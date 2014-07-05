@@ -1,0 +1,47 @@
+                     -1276418527O:8:"stdClass":10:{s:2:"id";s:1:"1";s:4:"name";s:6:"首页";s:4:"path";s:47:"@/smarty/templates/6/gh_aab60b4c5a39/index.html";s:13:"generate_path";s:0:"";s:4:"type";s:1:"1";s:9:"isdefault";s:1:"1";s:10:"createhtml";s:1:"0";s:4:"site";s:1:"6";s:4:"time";s:10:"1384874713";s:4:"code";s:1359:"{include file=$header}
+
+<div class="bannerbg">
+	<img src="smarty/templates/tpls/zongse/bannerbg.jpg" alt="" class="bannerbgpic">
+    <div class="big-pic big-pic3">
+        <div class="big-pic-in">
+            <div class="pic-list">
+			{if $channel_focus_contents}
+			{foreach from=$channel_focus_contents item=a key=k}
+			{if $k<3}
+                                <a href="{$a.link}"><p><img src="{$a.thumb}" style="height:188px;" width="100%"></p></a>
+								{/if}
+			{/foreach}
+			{/if}
+                            </div>
+            <div class="slide-dot">
+            	<center>
+					                   
+									   {if $channel_focus_contents}
+			{foreach from=$channel_focus_contents item=a key=k}
+			{if $k<3}
+			 <span{if $k==0} class="slide-dot-cur"{/if}></span>
+                    {/if}
+			{/foreach}
+			{/if}
+                                    </center>    
+            </div>
+        </div>
+    </div>
+</div>
+<div style="height:20px;"></div>
+<div class="clear"></div>
+<ul class="productbox">
+{if $pictureContents}
+			{foreach from=$pictureContents item=a key=k}
+			{if $k<3}
+		<li>
+    	<div><a href="{$a.link}" title="{$a.title}"><img max-width="150" src="{$a.thumb}" alt="{$a.title}"></a></div>
+        <p>{$a.title}</p>
+    </li>
+    	{/if}
+		{/foreach}
+		{/if}
+    </ul>
+
+{include file=$footer}
+";}

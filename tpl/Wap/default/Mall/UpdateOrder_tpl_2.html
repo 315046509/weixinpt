@@ -1,0 +1,155 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
+<meta name="MobileOptimized" content="240" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<meta name="Keywords" content="{weiwin:$metaTitle}" />
+<meta name="description" content="{weiwin:$metaTitle}" />
+<title>{weiwin:$metaTitle}</title>
+<link href="tpl/Wap/default/common/mall/bootstrap.css" rel="stylesheet">
+<link href="tpl/Wap/default/common/mall/wsp.css" rel="stylesheet">
+<link href="tpl/Wap/default/common/mall/tpl_2/ddxq.css" rel="stylesheet">
+<link href="tpl/Wap/default/common/mall/jquery.alerts.css" rel="stylesheet">
+<script src="{weiwin::$staticFilePath}/js/jquery.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="{weiwin::$staticFilePath}/js/main.js"></script>
+<script type="text/javascript" src="tpl/Wap/default/common/mall/jquery.cookie.js"></script>
+<script type="text/javascript" src="tpl/Wap/default/common/mall/jquery.alerts.js"></script>
+</head>
+<body id="ddxq">
+<style type="text/css">
+body {
+    background-image: url("tpl/Wap/default/common/mall/tpl_2/bg_body.png");
+    background-repeat: repeat;
+}
+
+.filler{
+    height: 35px;
+    width: 100%;
+}
+
+
+.fl{
+    background:url("tpl/Wap/default/common/mall/tpl_2/bg_fl.png") center no-repeat;
+    background-size:19px 15px;
+    width: 19px;
+    height: 15px;
+}
+
+.fix_top{
+    position: fixed;   bottom: 0px;
+    z-index: 100;
+    width: 100%;
+}
+
+</style>
+<div class="fix_top" id="header">
+    <div class="wrapper">
+        <dl id="navi_main">
+            <dd>
+                <a href="{weiwin::U('Product/index',array('token'=>$_GET['token'],'wecha_id'=>$_GET['wecha_id']))}"><img alt="Icon_cart"
+                src="tpl/Wap/default/common/mall/tpl_2/qutnur_5.png" style="width: 24px;height: 24px;margin-top: 6px;" /></a>
+            </dd>
+            <dd>
+                <a href="{weiwin::U('Product/cats',array('token'=>$_GET['token'],'wecha_id'=>$_GET['wecha_id']))}"><img alt="Icon_cart"
+                src="tpl/Wap/default/common/mall/tpl_2/qutnur_2.png" style="width: 24px;height: 24px;margin-top: 6px;" /></a>
+            </dd>
+
+            <dd>
+                <a href="{weiwin::U('Product/info',array('token'=>$_GET['token'],'wecha_id'=>$_GET['wecha_id']))}"><img alt="Icon_cart"
+                src="tpl/Wap/default/common/mall/tpl_2/qutnur_3.png" style="width: 24px;height: 24px;margin-top: 6px;" /></a>
+            </dd>
+            <dd>
+                <a href="{weiwin::U('Product/my',array('token'=>$_GET['token'],'wecha_id'=>$_GET['wecha_id']))}"><img alt="Icon_cart"
+                src="tpl/Wap/default/common/mall/tpl_2/qutnur_4.png" style="width: 24px;height: 24px;margin-top: 6px;" /></a>
+            </dd>            
+        </dl>
+        <div id="cart_button">
+            <a href="{weiwin::U('Product/cart',array('token'=>$_GET['token'],'wecha_id'=>$_GET['wecha_id']))}"> <img alt="Icon_cart"
+                src="tpl/Wap/default/common/mall/tpl_2/qutnur_1.png" style="width: 24px;height: 24px;margin-top: 6px;" />
+                <span id="cartCount" class="count">{weiwin:$totalProductCount}</span>
+            </a>
+        </div>
+        
+    </div>
+</div>
+<div class="filler"></div>
+<div class="ddxq_top">
+    微信商城: <span style="color:#B94A48;">订单信息</span>
+</div>
+<div class="ddxq_header">
+   <div class="ddxq_header_header">
+     <span><h4>联系人: {weiwin:$thisOrder.truename}</h4></span><span><h5>{weiwin:$thisOrder.tel}</h5></span><div class="clfl"></div>
+   </div>
+   <p>{weiwin:$thisOrder.address}</p>
+</div>
+    <div class="ddxq_content" style="margin-bottom:80px;">
+       <div class="ddxq_content_top">
+       </div> 
+       <div class="ddxq_content_content">
+            <volist name="products" id="p">
+            <div class="ddxq_content_content_top">
+                <div class="ddxq_content_content_top_left">
+                     <a href="{weiwin::U('Product/product',array('token'=>$token,'id'=>$p['id'],'wecha_id'=>$_GET['wecha_id']))}">
+                         <img src="{weiwin:$p.logourl}" />
+                     </a>
+                </div>
+                <div class="ddxq_content_content_top_content">
+                    <h4><a href="{weiwin::U('Product/product',array('token'=>$token,'id'=>$p['id'],'wecha_id'=>$_GET['wecha_id']))}">{weiwin:$p.name}</a></h4>
+                </div>
+                <div class="ddxq_content_content_top_right">
+                    <h6>￥{weiwin:$p.price}</h6><div class="clfl"></div>  
+                    <h7><span>X</span>{weiwin:$p.count}</h7>  
+                </div><div class="clfl"></div>
+            </div>
+            </volist>
+            <php>if(!$thisOrder['diningtype']){</php>
+            <div class="ddxq_content_content_bottom">
+                <p>发货信息</p>
+            </div>
+            <div class="ddxq_content_content_xq">
+    			<p>发货状态：<php>if($thisOrder['sent']){echo '已发货';}else{echo '未发货';}</php><p>
+				<php>if($thisOrder['sent']){</php>
+    			<p>快递公司：{weiwin:$thisOrder.logistics}<p>
+    			<p>快递单号：{weiwin:$thisOrder.logisticsid}<p>
+                <php>}</php>
+                <div class="clfl"></div> 
+            </div>
+<php>}</php>
+<div class="main" id="wrap">
+    <form method="post" action="" onsubmit="return tgSubmit()">
+    	<div class="p_mod o_address">
+            <div class="ddxq_content_content_bottom">
+             <p>收货地址</p>
+            </div>
+            <div class="ddxq_content_content_xq">
+    		<ul>
+    			<p><strong>姓名：</strong><input type="text" placeholder="请输入收货人姓名" id="truename" name="truename" value="{weiwin:$thisOrder.truename}" /><p>
+    			<p><strong>手机：</strong><input type="text" placeholder="请输入联系人手机号" id="tel" name="tel" value="{weiwin:$thisOrder.tel}" /><p>
+    			<p><strong>地址：</strong><input type="text" placeholder="请输入详细地址" id="address" name="address" value="{weiwin:$thisOrder.address}" /><p>
+    		</ul>
+            </div>
+			
+			
+    	</div>
+		<div class="o_btn clearfix">
+			<php>if($alipayConfig['open']&&!$thisOrder['paid']){</php>
+                <div class="btn_more">
+                <a href="{weiwin::U('Product/index',array('token'=>$_GET['token'],'wecha_id'=>$_GET['wecha_id']))}">继续购物</a>
+                </div>
+                <div class="btn_more">
+                <a href="/index.php?g=Wap&m=Alipay&a=pay&price={weiwin:$totalFee}&orderName={weiwin:$p.name}&single_orderid={weiwin:$thisOrder.id}&token={weiwin:$token}">立即支付此订单</a>
+                </div>
+			<php>}</php>
+			</div>
+    </form>
+</div>
+       </div>
+       <div class="ddxq_content_footer" style="margin-bottom:40px;">
+       </div> 
+    </div>
+<div style="height:30px;margin: 0; padding: 10px 7px; text-align: center;">
+    </div></body>
+</html>

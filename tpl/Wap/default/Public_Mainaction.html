@@ -1,0 +1,24 @@
+<if condition="$vo['ltype'] eq 'img'"><a href="{weiwin::C('site_url')}{weiwin::U('Wap/Index/lists',array('classid'=>$vo['id'],'token'=>$vo['token'],'wecha_id'=>$wecha_id,'weiwin'=>'mp.weixin.qq.com'))}" ></if>                 
+ <if condition="$vo['ltype'] eq 'map'"><a href="http://api.map.baidu.com/marker?location={weiwin:$vo.lat},{weiwin:$vo.lng}&title={weiwin:$home['webname']}&name={weiwin:$tpl['wxname']}&content={weiwin:$vo.place}&output=html&src=weiba|weiweb" ></if>
+ <if condition="$vo['ltype'] eq 'tel'"><a href="http://site.tg.qq.com/forwardToPhonePage?siteId=1&phone={weiwin:$vo.tel}" ></if>
+ <if condition="$vo['ltype'] eq 'url'"><a href="{weiwin:$vo.url}" ></if>
+ <if condition="$vo['ltype'] eq 'business'"> 
+         <if condition="$vo['business_type'] eq 'vipcard'"><a href="{weiwin::C('site_url')}{weiwin::U('Userinfo/index',array('token'=>$gtoken,'wecha_id'=>$wecha_id,'weiwin'=>'mp.weixin.qq.com'))}" ></if> 
+         <if condition="$vo['business_type'] eq 'official'"><a href="{weiwin::C('site_url')}{weiwin::U('Wap/Index/index',array('token'=>$gtoken,'wecha_id'=>$wecha_id,'weiwin'=>'mp.weixin.qq.com'))}"></if>
+	   <if condition="$vo['business_type'] eq 'photo'"><a href="{weiwin::C('site_url')}{weiwin::U('Wap/Photo/index',array('token'=>$gtoken,'wecha_id'=>$wecha_id,'weiwin'=>'mp.weixin.qq.com'))}"></if>
+	   <if condition="$vo['business_type'] eq 'ding'"> <a href="{weiwin::C('site_url')}{weiwin::U('Wap/Product/dining',array('token'=>$gtoken,'dining'=>1,'wecha_id'=>$wecha_id,'weiwin'=>'mp.weixin.qq.com'))}"></if>
+	   <if condition="$vo['business_type'] eq 'shop'"> <a href="{weiwin::C('site_url')}{weiwin::U('Wap/Product/cats',array('token'=>$gtoken,'wecha_id'=>$wecha_id,'weiwin'=>'mp.weixin.qq.com'))}"></if>
+	   <if condition="$vo['business_type'] eq 'groupon'"> <a href="{weiwin::C('site_url')}{weiwin::U('Wap/Groupon/grouponIndex',array('token'=>$gtoken,'wecha_id'=>$wecha_id,'weiwin'=>'mp.weixin.qq.com'))}"></if>
+	   <if condition="$vo['business_type'] eq 'Selfform'"> <a href="{weiwin::C('site_url')}{weiwin::U('Wap/Selfform/index',array('token'=>$gtoken,'id'=>$vo['activity_value'],'wecha_id'=>$wecha_id,'weiwin'=>'mp.weixin.qq.com'))}"></if>
+	   <if condition="$vo['business_type'] eq 'Hotel'"> <a href="{weiwin::C('site_url')}{weiwin::U('Wap/Host/index',array('token'=>$gtoken,'hid'=>$vo['activity_value'],'wecha_id'=>$wecha_id,'weiwin'=>'mp.weixin.qq.com'))}"></if>
+	   <if condition="$vo['business_type'] eq 'house'"> <a href="{weiwin::C('site_url')}{weiwin::U('Wap/Index/house',array('token'=>$gtoken,'hid'=>$vo['activity_value'],'wecha_id'=>$wecha_id,'weiwin'=>'mp.weixin.qq.com'))}"></if>
+	   <if condition="$vo['business_type'] eq 'Panorama'"> <a href="{weiwin::C('site_url')}{weiwin::U('Wap/Index/Panorama',array('token'=>$gtoken,'id'=>$vo['activity_value'],'wecha_id'=>$wecha_id,'weiwin'=>'mp.weixin.qq.com'))}"></if>
+	 
+				
+</if>
+<if condition="$vo['ltype'] eq  'activity'"> 
+<if condition="$vo['activity_type'] eq 1"><a href="{weiwin::C('site_url')}{weiwin::U('Wap/Lottery/index',array('type'=>$vo['activity_type'],'token'=>$gtoken,'id'=>$vo['activity_value'],'wecha_id'=>$wecha_id,'weiwin'=>'mp.weixin.qq.com'))}"></if> 
+<if condition="$vo['activity_type'] eq 2"><a href="{weiwin::C('site_url')}{weiwin::U('Wap/Guajiang/index',array('type'=>$vo['activity_type'],'token'=>$gtoken,'id'=>$vo['activity_value'],'wecha_id'=>$wecha_id,'weiwin'=>'mp.weixin.qq.com'))}"></if> 
+<if condition="$vo['activity_type'] eq 3"><a href="{weiwin::C('site_url')}{weiwin::U('Wap/Coupon/index',array('type'=>$vo['activity_type'],'token'=>$gtoken,'id'=>$vo['activity_value'],'wecha_id'=>$wecha_id,'weiwin'=>'mp.weixin.qq.com'))}"></if>
+<if condition="$vo['activity_type'] eq 4"><a href="{weiwin::C('site_url')}{weiwin::U('Wap/Vote/index',array('type'=>$vo['activity_type'],'token'=>$gtoken,'id'=>$vo['activity_value'],'wecha_id'=>$wecha_id,'weiwin'=>'mp.weixin.qq.com'))}"></if> 
+</if>

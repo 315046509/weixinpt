@@ -1,0 +1,59 @@
+<include file="Public:head"/>
+<link rel="stylesheet" type="text/css" href="{weiwin::RES}/default_user_com.css" media="all">
+<div class="content" style="width:95%; background:none; margin-left:25px; border:none; margin-bottom:30px; margin-top:30px;" >
+  <div class="cLineB">
+    <div  class="quick-actions_homepage">
+    <ul class="quick-actions">
+      <li class="bg_lb"> <a href="{weiwin::U('ServiceUser/index',array('token'=>$token))}"> <i class="icon-glass"></i> 人工客服 </a> </li>
+      <li class="bg_ls"> <a href="{weiwin::U('Message/index',array('token'=>$token))}"> <i class="icon-envelope-alt"></i> 消息群发 </a> </li>
+      <li class="bg_lv"> <a href="{weiwin::U('Share/index',array('token'=>$token))}"> <i class="icon-google-plus"></i> 分享设置 </a> </li>
+      <li class="bg_dy"> <a href="{weiwin::U('Recognition/index',array('token'=>$token))}"> <i class="icon-star"></i> 渠道二维码</a> </li>
+      <li class="bg_lg"> <a href="{weiwin::U('Wechat_behavior/statistics',array('token'=>$token))}"> <i class="icon-plus"></i> 行为分析</a> </li>
+      <li class="bg_ly"> <a href="{weiwin::U('Wechat_group/groups',array('token'=>$token))}"> <i class="icon-tag"></i> 分组管理 </a> </li>
+      <li class="bg_lo"> <a href="{weiwin::U('Wechat_group/index',array('token'=>$token))}"> <i class="icon-map-marker"></i> 粉丝管理 </a> </li>
+      <li class="bg_db"> <a href="javascript:history.go(-1);"> <i class="icon-share-alt"></i> 返回</a> </li>
+    </ul>
+  </div>
+              <h4>微信多客服设置</h4>
+              <include file="ServiceUser:menu"/>
+          </div>
+          
+          <div class="cLine">
+    <div class="alert">
+    <p>微信客服是指微信公众平台自带的多客服系统，只有认证服务号才有此功能。<br>微信客服启用方法，必须满足两个条件：1、有客服处于登录状态；2、下面的人工客服状态处于打开中。这样系统在回答不上来的时候就会切换到客服模式。在客服模式下系统将不再做任何自动回复。<br>如需彻底关闭微信客服：必须让客服全部下线，并且在下面关掉客服状态</p>
+    </div>
+</div>
+          
+       
+          <div class="msgWrap">
+          <div class="msgWrap">
+<form class="form" method="post" enctype="multipart/form-data" >
+<TABLE class="userinfoArea" style=" margin:20px 0 0 0;" border="0" cellSpacing="0" cellPadding="0" width="100%">
+  <THEAD>
+
+<TR>
+  <TH valign="top">开启微信人工客服：</TH>
+  <TD><label for="radio3"><input id="radio3" class="radio" type="radio" name="transfer_customer_service" value="1"  <eq name="info.transfer_customer_service" value="1">checked="checked"</eq> /> 开启</label>&nbsp;&nbsp;<label for="radio4"><input class="radio" id="radio4" type="radio" name="transfer_customer_service" value="0" <eq name="info.transfer_customer_service" value="0">checked="checked"</eq> /> 关闭</label></TD>
+</TR>
+
+<TR>
+  <TH></TH>
+  <TD><button type="submit"  name="button"  class="btnGreen left" >保存</button>　
+  	</TD>
+  </TR>
+  </TBODY>
+</TABLE>
+  </form>
+
+
+
+  </div> 
+          </div>
+          <div class="cLine">
+            <div class="pageNavigator right">
+                 <div class="pages">{weiwin:$page}</div>
+            </div>
+            <div class="clr"></div>
+          </div>
+        </div>  
+<include file="Public:footer"/>

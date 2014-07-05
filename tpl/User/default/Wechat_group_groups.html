@@ -1,0 +1,79 @@
+<include file="Public:head"/>
+<link rel="stylesheet" type="text/css" href="./tpl/User/default/common/css/cymain.css" />
+<div class="content" style="width:95%; background:none; margin-left:25px; border:none; margin-bottom:30px; margin-top:30px;" >
+  <div class="cLineB">
+    <div  class="quick-actions_homepage">
+    <ul class="quick-actions">
+      <li class="bg_lb"> <a href="{weiwin::U('ServiceUser/index',array('token'=>$token))}"> <i class="icon-glass"></i> 人工客服 </a> </li>
+      <li class="bg_ls"> <a href="{weiwin::U('Message/index',array('token'=>$token))}"> <i class="icon-envelope-alt"></i> 消息群发 </a> </li>
+      <li class="bg_lv"> <a href="{weiwin::U('Share/index',array('token'=>$token))}"> <i class="icon-google-plus"></i> 分享设置 </a> </li>
+      <li class="bg_dy"> <a href="{weiwin::U('Recognition/index',array('token'=>$token))}"> <i class="icon-star"></i> 渠道二维码</a> </li>
+      <li class="bg_lg"> <a href="{weiwin::U('Wechat_behavior/statistics',array('token'=>$token))}"> <i class="icon-plus"></i> 行为分析</a> </li>
+      <li class="bg_ly"> <a href="{weiwin::U('Wechat_group/groups',array('token'=>$token))}"> <i class="icon-tag"></i> 分组管理 </a> </li>
+      <li class="bg_lo"> <a href="{weiwin::U('Wechat_group/index',array('token'=>$token))}"> <i class="icon-map-marker"></i> 粉丝管理 </a> </li>
+      <li class="bg_db"> <a href="javascript:history.go(-1);"> <i class="icon-share-alt"></i> 返回</a> </li>
+    </ul>
+  </div>
+              <h4 class="left">分组管理</h4>
+              <div class="clr"></div>
+          </div>
+ <div class="cLineD">
+
+         </div>
+          <div class="cLine">
+    <div class="ftip" style="margin:0 auto">
+   微信接口不支持删除分组操作，所以添加的时候请您谨慎操作，如需删除请到公众平台删除，本系统会与公众平台同步
+    </div>
+</div>
+          
+          <div class="cLine">
+            <div class="pageNavigator left">
+				<a href="{weiwin::U('User/Wechat_group/groupSet')}" class="btn btn-primary">
+					<img src="tpl/User/default/common/images/text.png" class="vm">添加
+				</a>
+				&nbsp;
+				&nbsp;
+				<a href="{weiwin::U('User/Wechat_group/sysGroups')}" class="btn btn-primary">
+					<img src="tpl/User/default/common/images/text.png" class="vm">同步
+				</a>
+            </div>
+            <div class="clr"></div>
+          </div>
+          <div class="msgWrap">
+          <form method="post" action="" id="info">
+          <input name="delall" type="hidden" value="del">
+           <input name="wxid" type="hidden" value="gh_423dwjkewad">
+            <table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+              <thead>
+                <tr>
+					<th class="select">编号</th>
+					<th>公众平台中编号</th>
+					<th>名称 </th>
+					<th>粉丝量 </th>
+					<th>简介</th>
+					<th class="norightborder">操作</th>
+                </tr>
+              </thead>
+              <tbody>
+			  <weiwinlist array="groups" foreach="list">
+                <tr>
+                  <td>{weiwin:$list.id}</td>
+                  <td>{weiwin:$list.wechatgroupid}</td>
+                  <td><a href="{weiwin::U('Wechat_group/index',array('wechatgroupid'=>$list['wechatgroupid']))}">{weiwin:$list.name}</a></td>
+				  <td>{weiwin:$list.fanscount}</td>
+                  <td>{weiwin:$list.intro}</td>
+                  <td class="norightborder">
+						<a href="{weiwin::U('Wechat_group/groupSet',array('id'=>$list['id']))}">修改</a>　
+				   </td>
+                </tr>
+      			</weiwinlist>
+                 <tr>
+
+                </tr>
+              </tbody>
+            </table>
+           </form> 
+          </div>
+
+        </div>	
+<include file="Public:footer"/>

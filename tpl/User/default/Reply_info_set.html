@@ -1,0 +1,72 @@
+<include file="Public:head"/>
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+<link rel="stylesheet" type="text/css" href="{weiwin::RES}/css/cymain.css" />
+<div class="content" style="width:95%; background:none; margin-left:25px; border:none; margin-bottom:30px; margin-top:30px;" >
+  <div class="cLineB">
+    <div  class="quick-actions_homepage">
+    <ul class="quick-actions">
+      <li class="bg_lb"> <a href="{weiwin::U('Taobao/index',array('token'=>$token))}"> <i class="icon-bullhorn"></i> 淘宝天猫 </a> </li>
+      <li class="bg_dy"> <a href="{weiwin::U('Api/index',array('token'=>$token))}"> <i class="icon-resize-full"></i> 第三方</a> </li>
+      <li class="bg_lg"> <a href="{weiwin::U('Reply/index',array('token'=>$token))}"> <i class="icon-book"></i> 留言板</a> </li>
+      <li class="bg_ly"> <a href="{weiwin::U('Greeting_card/index',array('token'=>$token))}"> <i class="icon-envelope"></i> 微贺卡 </a> </li>
+      <li class="bg_lo"> <a href="{weiwin::U('Shake/index',array('token'=>$token))}"> <i class="icon-bolt"></i> 摇一摇 </a> </li>
+      <li class="bg_ls"> <a href="{weiwin::U('Wall/index',array('token'=>$token))}"> <i class="icon-reorder"></i> 微信墙</a> </li>
+      <li class="bg_lr"> <a href="{weiwin::U('Kefu/index',array('token'=>$token))}"> <i class="icon-question-sign"></i> 智能客服</a> </li>
+      <li class="bg_db"> <a href="javascript:history.go(-1);"> <i class="icon-share-alt"></i> 返回</a> </li>
+    </ul>
+  </div>
+  <h4>{weiwin:$infoType.name}回复配置 </h4><a href="javascript:history.go(-1);" class="right btn btn-info" style="margin-top:-27px">返回</a>
+ </div>
+    <div class="msgWrap bgfc" style="margin-top:10px;">
+	  <form class="form" method="post" action="" target="_top" enctype="multipart/form-data">	 
+		<table class="userinfoArea" style=" margin:0;" border="0" cellspacing="0" cellpadding="0" width="100%">
+			<tbody>
+				<tr>
+				  <th valign="top"><span class="red">*</span>关键词：</th>
+				  <td>
+					<span class="red">{weiwin:$infoType.keyword} —— 当用户输入该关键词时，将会触发此回复。</span></td>
+				</tr>
+				<tr>
+					<th width="120"><span class="red">*</span>回复标题：</th>
+					<td><input type="text" name="title" value="{weiwin:$set.title}" class="px" style="width:550px;"></td>
+				</tr>
+				<tr>
+					<th width="120">内容介绍：</th>
+					<td><textarea style="width:560px;height:75px" name="info" id="info" class="px">{weiwin:$set.info}</textarea><br/>最多填写120个字</td>
+				</tr>
+				<tr>
+					<th>回复图片：</th>
+					<td><input type="text" name="picurl" value="{weiwin:$set.picurl}" id="pic" class="px" style="width:550px;"> <script src="/tpl/static/upyun.js"></script><a href="###" onclick="upyunPicUpload('pic',700,420,'{weiwin:$token}')" class="ChooseImage">上传</a> <a href="###" onclick="viewImg('pic')" class="ChooseImage">预览</a>   &nbsp; 大小为720x400</td>
+				</tr>
+				<tr>
+					<th>第三方接口：</th>
+					<td><input name="apiurl" value="{weiwin:$set.apiurl}" class="px" style="width:550px;" type="text"><br> 只适用于引用第三方3G网站的链接</td>
+				</tr>
+				<if condition="$set and ($infoType.type eq 'Dining')">
+				<tr>
+					<th>订购方式开关：</th>
+					<td><label><input type="checkbox" name="diningyuding" value="1" <if condition="$set.diningyuding eq 1">checked</if> /> 开启预定</label> <label><input type="checkbox" name="diningwaimai" value="1" <if condition="$set.diningwaimai eq 1">checked</if> /> 开启外卖</label></td>
+				</tr>
+				<tr>
+        <th>订购时限：</th>
+        <td><input type="text" id="yudingdays" name="yudingdays" value="{weiwin:$config.yudingdays}" class="px" style="width:100px;" /> 天（可以订购多少天）</td> 
+       </tr>
+				</if>
+				<th>&nbsp;</th>
+					<td>
+					<input type="hidden" name="keyword" value="{weiwin:$infoType.keyword}" />
+					<input type="hidden" name="infotype" value="{weiwin:$infoType.type}" />
+					<input type="hidden" name="token" value="{weiwin:$token}" />
+						<button type="submit" name="button" class="btn btn-success">保存</button>
+						<a href="javascript:history.go(-1);" class="btn btn-danger">取消</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</form>
+  </div> 
+ 
+  
+        </div>
+<include file="Public:footer"/>

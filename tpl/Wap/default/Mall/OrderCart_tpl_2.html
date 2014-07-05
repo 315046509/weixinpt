@@ -1,0 +1,217 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
+<meta name="MobileOptimized" content="240" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<meta name="Keywords" content="{weiwin:$metaTitle}" />
+<meta name="description" content="{weiwin:$metaTitle}" />
+<title>{weiwin:$metaTitle}</title>
+
+<link href="tpl/Wap/default/common/mall/bootstrap.css" rel="stylesheet">
+<link href="tpl/Wap/default/common/mall/wsp.css" rel="stylesheet">
+<link href="tpl/Wap/default/common/mall/jquery.alerts.css" rel="stylesheet">
+<script src="{weiwin::$staticFilePath}/js/jquery.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="{weiwin::$staticFilePath}/js/main.js"></script>
+<script type="text/javascript" src="tpl/Wap/default/common/mall/jquery.cookie.js"></script>
+<script type="text/javascript" src="tpl/Wap/default/common/mall/jquery.alerts.js"></script>
+
+<style type="text/css">
+input[type="radio"],
+input[type="checkbox"] {
+  margin: 0px;
+}
+
+select {
+  width:95%;
+}
+
+input[type="text"]{
+  width:95%;
+}
+
+.text_red{
+    color:red;
+}
+</style>
+</head>
+
+<body>
+<style type="text/css">
+body {
+    background-image: url("tpl/Wap/default/common/mall/tpl_2/bg_body.png");
+    background-repeat: repeat;
+}
+
+.filler{
+    height: 35px;
+    width: 100%;
+}
+
+
+.fl{
+    background:url("tpl/Wap/default/common/mall/tpl_2/bg_fl.png") center no-repeat;
+    background-size:19px 15px;
+    width: 19px;
+    height: 15px;
+}
+
+.fix_top{
+position: fixed;  
+     bottom: 0px;
+    z-index: 100;
+    width: 100%;
+}
+
+.f_list_car .all_price font {
+    font-size: 18px;
+}
+
+.f_list_car font {
+    color: #f60;
+    margin: 0px 5px;
+}
+</style>
+<div class="fix_top" id="header">
+    <div class="wrapper">
+        <dl id="navi_main">
+            <dd>
+                <a href="{weiwin::U('Product/index',array('token'=>$_GET['token'],'wecha_id'=>$_GET['wecha_id']))}"><img alt="Icon_cart"
+                src="tpl/Wap/default/common/mall/tpl_2/qutnur_5.png" style="width: 24px;height: 24px;margin-top: 6px;" /></a>
+            </dd>
+            <dd>
+                <a href="{weiwin::U('Product/cats',array('token'=>$_GET['token'],'wecha_id'=>$_GET['wecha_id']))}"><img alt="Icon_cart"
+                src="tpl/Wap/default/common/mall/tpl_2/qutnur_2.png" style="width: 24px;height: 24px;margin-top: 6px;" /></a>
+            </dd>
+
+            <dd>
+                <a href="{weiwin::U('Product/info',array('token'=>$_GET['token'],'wecha_id'=>$_GET['wecha_id']))}"><img alt="Icon_cart"
+                src="tpl/Wap/default/common/mall/tpl_2/qutnur_3.png" style="width: 24px;height: 24px;margin-top: 6px;" /></a>
+            </dd>
+            <dd>
+                <a href="{weiwin::U('Product/my',array('token'=>$_GET['token'],'wecha_id'=>$_GET['wecha_id']))}"><img alt="Icon_cart"
+                src="tpl/Wap/default/common/mall/tpl_2/qutnur_4.png" style="width: 24px;height: 24px;margin-top: 6px;" /></a>
+            </dd>            
+        </dl>
+        <div id="cart_button">
+            <a href="{weiwin::U('Product/cart',array('token'=>$_GET['token'],'wecha_id'=>$_GET['wecha_id']))}"> <img alt="Icon_cart"
+                src="tpl/Wap/default/common/mall/tpl_2/qutnur_1.png" style="width: 24px;height: 24px;margin-top: 6px;" />
+                <span id="cartCount" class="count">{weiwin:$totalProductCount}</span>
+            </a>
+        </div>
+        
+    </div>
+</div>
+<div class="filler"></div>
+    <div style="margin-top: 10px;">
+        <div class="wrapper">
+            <div class="cont f_list_car">
+                <span class="all_price">总价: <font id="all_price">￥{weiwin:$totalProductFee}</font></span>
+                <span>数量<font id="all_numb">{weiwin:$totalProductCount}</font>当前商品</span>
+            </div>
+            <form autocomplete="off" method="post" action="" onsubmit="return tgSubmit()">
+                <div id="wrap" class="cont" style="margin-top: 10px;">
+                    <h3 class="ttl_sub">请填写个人信息</h3>
+                    <label for="truename"><span class="text_red"> * </span> 姓名: </label>
+                    <input style="width:95%;" placeholder="请输入姓名" id="truename" name="truename" type="truename" value="{weiwin:$thisUser.truename}"/>
+                    <label for="tel"><span class="text_red"> * </span>手机:</label>
+                    <input style="width:95%;" placeholder="请输入联系人手机号" id="tel" name="tel" type="tel" value="{weiwin:$thisUser.tel}"/>
+                    <label for="address"><span class="text_red"> * </span> 收货地址: </label>
+                    <input style="width:95%;" placeholder="请输入详细地址" id="address" name="address" type="address" value="{weiwin:$thisUser.address}"/>
+                    <label for="saveinfo"> 联系方式保存到用户库: </label><input type="checkbox" value="1" name="saveinfo" style="width: 16px;" checked="true" />
+                    <label for="beizhu">备注: </label>
+                    <textarea style="width:95%;" id="customer_remark" name="customer_remark" placeholder="请输入备注信息"></textarea>
+                    <div class="btn_proceed">
+                        <button type="submit" class="btn btn-large btn-primary"><if condition="($alipayConfig.open eq 0) OR ($totalProductFee lt 0.1)">保存<else/>保存并付款</if></button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <p class="btn_more">
+        <a href="{weiwin::U('Product/index',array('token'=>$_GET['token'],'wecha_id'=>$_GET['wecha_id']))}">继续购物</a>
+    </p>
+    <div style="height:30px;margin: 0; padding: 10px 7px; text-align: center;">
+    </div></body>
+<script>
+$(".dining_type dd").click(function(){
+    $(this).parent().children('.on').removeClass('on');
+    $(this).addClass('on');
+    $(this).parent().children('input').removeAttr('checked');
+    $(this).children('input').attr('checked', 'true');
+   $('#diningtype').attr('value',$(this).children('input').attr('value'));
+    var table_class = $(this).children('input').attr('id');
+    $('.desks').hide();
+    $('.'+table_class).show();
+})
+$('.desks dd').click(function(){
+    $(this).parent().children('.on').removeClass('on');
+    $(this).addClass('on');
+    $(this).parent().children('input').removeAttr('checked');
+    $(this).children('input').attr('checked', 'true');    
+}) 
+function showTip(tipTxt) {
+        var div = document.createElement('div');
+        div.innerHTML = '<div class="deploy_ctype_tip"><p>' + tipTxt + '</p></div>';
+        var tipNode = div.firstChild;
+        $("#wrap").after(tipNode);
+        setTimeout(function () {
+            $(tipNode).remove();
+        }, 1500);
+		}
+	function tgSubmit(){
+		if($('#hour')&&$('#desks').css.display=='block'){
+			if($('#hour').val()==""){
+				showTip('请选择时间')
+				return false;
+			}
+		}
+		//
+		var userName=$('#truename').val();
+		if($.trim(userName) == ""){
+			showTip('请填写姓名')
+			return false;
+		}
+		//
+		var userPhone = $("#tel").val()
+		if ($.trim(userPhone) == "") {
+			showTip('请填写您的手机号码')
+			
+			return false;
+		}
+
+		var patrn = /^(1(([35][0-9])|(47)|(85)|[8][01256789]))\d{8}$/;
+		if (!patrn.exec($.trim(userPhone))) {
+			showTip('手机号格式错误')
+			return false;
+		}
+		return true;
+	}
+	function tables(){
+		$.ajax({
+					url:'?g=Wap&m=Product&a=ajaxTables&token={weiwin:$token}&time='+$('#buytimestamp').attr('value')+'&hour='+$('#hour').attr('value'),
+					success : function(data) {
+						var tableids=data.split(',');
+
+						var count=tableids.length;
+						if(count){
+							$('.radio_tableid').checked=false;
+							$('.f_order_list dd').removeClass('on');
+							$('.f_order_list dd').css('display','');
+							for(i=0;i<count;i++){
+								var id=tableids[i];
+								if($('#table_radio_'+id)){
+									$('#table_radio_'+id).css('display','none');
+								}
+							}
+						}
+
+					}
+				});
+	}
+	</script>
+
+</html>

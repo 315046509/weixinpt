@@ -1,0 +1,41 @@
+<include file="Index:header"/>
+<div id="content" style="margin-top:50px; margin-left:15px;">
+<link rel="stylesheet" type="text/css" href="{weiwin::RES}/css/cymain.css" />  
+<div class="tab">
+<ul>
+<li class='<if condition="(ACTION_NAME eq \'autobind_add\')">current </if> tabli' id="tab5"><a href="{weiwin::U('Index/autobind_add')}">一键绑定</a></li>
+<li class='<if condition="(ACTION_NAME eq \'add\')">current </if> tabli' id="tab5"><a href="{weiwin::U('Index/add')}">手动绑定</a></li>
+</ul>
+</div>
+                      <div class="box-content">
+                             <div class="alert"><strong>温馨提示：</strong>在此处添加微信公众号后将自动绑定，请确认您已打开微信公众平台中的开发模式</div>
+
+                            <form method="post"  enctype="multipart/form-data">
+								<div class="control-group">
+                                    <label for="plc_name" class="control-label">微信公众平台帐号：</label>
+                                    <div class="controls">
+                                        <input type="text" name="username" value="" class="px" tabindex="1" size="40"><span class="maroon">*您登录官方公众平台的那个邮件地址</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="control-group">
+                                    <label for="wechat_id" class="control-label">微信公众平台密码：</label>
+                                    <div class="controls">
+                                        <input type="password" required="" class="px" tabindex="1" value="" name="password" size="25"><span class="maroon">*绑定大概要5秒钟时间，本站不会记录任何数据，如果不放心请使用手动绑定模式！</span>
+                                    </div>
+                                </div>
+                                <div class="form-actions">
+                                    <button type="submit" class="btn btn-primary">绑定</button>
+                                    <a class="btn" href="Javascript:window.history.go(-1)">取消</a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

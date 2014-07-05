@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="{weiwin::RES}/css/template/reset.css" media="all" />
+<link rel="stylesheet" type="text/css" href="{weiwin::RES}/css/template/snower.css" media="all" />
+<link rel="stylesheet" type="text/css" href="{weiwin::RES}/css/template/common.css" media="all" />
+<link rel="stylesheet" type="text/css" href="{weiwin::RES}/css/template/home-38.css" media="all" />
+<link rel="stylesheet" type="text/css" href="{weiwin::RES}/css/font-awesome.css" media="all" />
+<script type="text/javascript" src="{weiwin::RES}/src/template/maivl.js"></script>
+<script type="text/javascript" src="{weiwin::RES}/src/jQuery.js"></script>
+<script type="text/javascript" src="{weiwin::RES}/src/template/swipe.js"></script>
+<script type="text/javascript" src="{weiwin::RES}/src/template/zepto.js"></script>
+<title>3G楼盘－{weiwin:$es_data['title']}</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+<!-- Mobile Devices Support @begin -->
+<meta content="application/xhtml+xml;charset=UTF-8" http-equiv="Content-Type">
+<meta content="no-cache,must-revalidate" http-equiv="Cache-Control">
+<meta content="no-cache" http-equiv="pragma">
+<meta content="0" http-equiv="expires">
+<meta content="telephone=no, address=no" name="format-detection">
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<!-- apple devices fullscreen -->
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<!-- Mobile Devices Support @end -->
+</head>
+<body onselectstart="return true;" ondragstart="return false;">
+<div class="body">
+  <!--
+	幻灯片管理
+	-->
+  <div style="-webkit-transform:translate3d(0,0,0);">
+    <div id="banner_box" class="box_swipe">
+      <ul>
+        <li> <a onclick="return false;"> <img src="{weiwin:$es_data['banner1']}" alt="1" style="width:100%;" /> </a> </li>
+        <li> <a onclick="return false;"> <img src="{weiwin:$es_data['banner2']}" alt="2" style="width:100%;" /> </a> </li>
+        <li> <a onclick="return false;"> <img src="{weiwin:$es_data['banner3']}" alt="3" style="width:100%;" /> </a> </li>
+        <li> <a onclick="return false;"> <img src="{weiwin:$es_data['banner4']}" alt="4" style="width:100%;" /> </a> </li>
+        <li> <a onclick="return false;"> <img src="{weiwin:$es_data['banner5']}" alt="5" style="width:100%;" /> </a> </li>
+      </ul>
+      <ol>
+        <li class="on"></li>
+        <li ></li>
+        <li ></li>
+        <li ></li>
+        <li ></li>
+      </ol>
+    </div>
+  </div>
+  <script>
+		$(function(){
+			new Swipe(document.getElementById('banner_box'), {
+				speed:500,
+				auto:3000,
+				callback: function(){
+					var lis = $(this.element).next("ol").children();
+					lis.removeClass("on").eq(this.index).addClass("on");
+				}
+			});
+		});
+	</script>
+  <br/>
+  <header>
+    <div class="snower">
+      <script type="text/javascript"></script>
+      <script type="text/javascript" src="{weiwin::RES}/src/template/snower.js"></script>
+    </div>
+  </header>
+  <!--
+		用户分类管理
+        -->
+<include file="Estate:menu"/>
+  <script>
+			$(document).ready(function(){
+				window.navList_box = new Swipe(document.getElementById('navList_box'), {auto:0});
+			});
+		</script>
+</div>
+<footer style="overflow:visible;">
+<footer class="weimob-copyright" style="text-align:center; color:#ffd800;margin-right:20px;margin-top:0px;"><a>©微我网技术支持</a></footer>
+<div mark="stat_code" style="width:0px; height:0px; display:none;"> </div>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<include file="Public:head"/>
+<div class="content" style="width:95%; background:none; margin-left:25px; border:none; margin-bottom:30px; margin-top:30px;" >
+  <div class="cLineB">
+    <div  class="quick-actions_homepage">
+    <ul class="quick-actions">
+      <li class="bg_lb"> <a href="{weiwin::U('ServiceUser/index',array('token'=>$token))}"> <i class="icon-glass"></i> 人工客服 </a> </li>
+      <li class="bg_ls"> <a href="{weiwin::U('Message/index',array('token'=>$token))}"> <i class="icon-envelope-alt"></i> 消息群发 </a> </li>
+      <li class="bg_lv"> <a href="{weiwin::U('Share/index',array('token'=>$token))}"> <i class="icon-google-plus"></i> 分享设置 </a> </li>
+      <li class="bg_dy"> <a href="{weiwin::U('Recognition/index',array('token'=>$token))}"> <i class="icon-star"></i> 渠道二维码</a> </li>
+      <li class="bg_lg"> <a href="{weiwin::U('Wechat_behavior/statistics',array('token'=>$token))}"> <i class="icon-plus"></i> 行为分析</a> </li>
+      <li class="bg_ly"> <a href="{weiwin::U('Wechat_group/groups',array('token'=>$token))}"> <i class="icon-tag"></i> 分组管理 </a> </li>
+      <li class="bg_lo"> <a href="{weiwin::U('Wechat_group/index',array('token'=>$token))}"> <i class="icon-map-marker"></i> 粉丝管理 </a> </li>
+      <li class="bg_db"> <a href="javascript:history.go(-1);"> <i class="icon-share-alt"></i> 返回</a> </li>
+    </ul>
+  </div>
+  <h4>认证服务号渠道二维码生成与统计</h4>
+            
+ </div>
+
+         
+    
+ <div class="msgWrap bgfc" style=" padding:5px 10px; margin:0">
+   <table class="ListProduct" border="" cellspacing="0" cellpadding="0" width="100%">
+	<thead>
+		<tr>
+			<th style="width:80px;">渠道ID</th>
+			<th>渠道名称</th>
+			<th>渠道使用量</th>
+			<th>触发关键词</th>
+			<th style="width:80px;">渠道二维码</th>
+			<th style="width:80px;">状态</th>
+			<th style=" width:100px;" class="norightborder">操作</th>
+		</tr>
+	</thead>
+	<tbody>
+			  <weiwinlist array="list" foreach="list">
+                <tr>
+                  <td style="width:80px;">{weiwin:$list.id}</td>
+                  <td>{weiwin:$list.title}</td>
+                  <td>{weiwin:$list.attention_num}</td>
+                  <td>{weiwin:$list.keyword}</td>
+                  <td><weiwinif where="$list['code_url'] neq ''"><a href="https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket={weiwin:$list.code_url}" target="_blank">点击查看</a><else/><a href="{weiwin::U('Recognition/get_code',array('id'=>$list['id']))}">获取二维码</a> </weiwinif></td>
+				   <td><weiwinif where="$list['status'] eq 0">启用<else/>暂停</weiwinif></td>
+                  <td class="norightborder">
+						<weiwinif where="$list['status'] eq 0"><a href="{weiwin::U('Recognition/status',array('type'=>1,'id'=>$list['id']))}">停用</a><else/><a href="{weiwin::U('Recognition/status',array('type'=>0,'id'=>$list['id']))}">启用</a></weiwinif> | 
+						<a href="{weiwin::U('Recognition/del',array('id'=>$list['id']))}">删除</a>　
+				   </td>
+                </tr>
+      			</weiwinlist>
+                 <tr>
+                </tr>
+              </tbody>
+	</table>
+  <form class="form" method="post" action="" target="_top" enctype="multipart/form-data">
+<table class="userinfoArea" style=" margin:20px 0 0 0;" border="0" cellspacing="0" cellpadding="0" width="100%">
+  <thead>
+<tr>
+  <th valign="top"><label for="title">渠道名称：</label></th>
+  <td><input type="input" class="px" required="" id="title" value="" name="title" style="width:400px"> 请认真填写生成后不可以编辑！只能删除重建<br>
+                   </td>
+  <td>&nbsp;</td>
+</tr>
+                              <tr>
+  <th valign="top"><label for="keyword">触发关键词：</label></th>
+  <td><input type="input" class="px" id="keyword" value="" name="keyword" style="width:60px"> 非必填项，建议留空（留空保留原关注时回复的内容!）<br>
+                   </td>
+  <td>&nbsp;</td>
+</tr>
+                            </thead>
+                            
+  <tbody>
+ 
+<tr>
+  <th></th>
+  <td><button type="submit" name="button" class="btn btn-success">添加</button> 
+  </td>
+  </tr>
+  </tbody>
+</table>
+  </form>
+
+       
+       <div class="clear"></div>
+      </div>
+  </div>
+<include file="Public:footer"/>

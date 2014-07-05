@@ -1,0 +1,157 @@
+<include file="Public:head"/> 
+<script src="{weiwin::RES}/js/date/WdatePicker.js"></script>
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+<div class="content" style="width:98%; background:none; margin-left:15px; border:none; padding-top:30px;" >
+    <div  class="quick-actions_homepage">
+    <ul class="quick-actions">
+      <li class="bg_lb"> <a href="{weiwin::U('Lottery/index',array('token'=>$token))}"> <i class="icon-gift"></i> 大转盘 </a> </li>
+      <li class="bg_dy"> <a href="{weiwin::U('Coupon/index',array('token'=>$token))}"> <i class="icon-money"></i> 优惠券</a> </li>
+      <li class="bg_lg"> <a href="{weiwin::U('Guajiang/index',array('token'=>$token))}"> <i class="icon-cogs"></i> 刮刮卡</a> </li>
+      <li class="bg_lh"> <a href="{weiwin::U('LuckyFruit/index',array('token'=>$token))}"> <i class="icon-trophy"></i> 水果机 </a> </li>
+      <li class="bg_ly"> <a href="{weiwin::U('GoldenEgg/index',array('token'=>$token))}"> <i class="icon-trophy"></i> 砸金蛋 </a> </li>
+      <li class="bg_lo"> <a href="{weiwin::U('Wedding/index',array('token'=>$token))}"> <i class="icon-heart"></i> 微喜帖 </a> </li>
+      <li class="bg_ls"> <a href="{weiwin::U('Diaoyan/index',array('token'=>$token))}"> <i class="icon-bullhorn"></i> 微调研</a> </li>
+      <li class="bg_lr"> <a href="{weiwin::U('Vote/index',array('token'=>$token))}"> <i class="icon-bar-chart"></i> 微投票</a> </li>
+      <li class="bg_db"> <a href="javascript:history.go(-1);"> <i class="icon-share-alt"></i> 返回</a> </li>
+    </ul>
+    </div>
+<div class="cLineB">
+
+    <h4>调研设置</h4> 
+
+    <a href="{weiwin::U('Diaoyan/index',array('token'=>$token))}" class="right  btn btn-success" style="margin-top:-27px">返回</a> 
+
+   </div> 
+
+
+
+   <form class="form" method="post" id="form" action="" enctype="multipart/form-data"> 
+
+<if condition="$isUpdate eq 1">
+
+<input type="hidden" name="id" value="{weiwin:$set.id}" />
+
+</if>
+
+    <div class="msgWrap bgfc"> 
+
+     <table class="userinfoArea" style=" margin:0;" border="0" cellspacing="0" cellpadding="0" width="100%"> 
+
+      <tbody> 
+
+       
+
+	   <tr> 
+
+        <th><span class="red">*</span>关键词：</th>
+
+        <td><input type="text" name="keyword" id="keyword" value="{weiwin:$set.keyword}" class="px" style="width:400px;" /></td> 
+
+       </tr>
+
+	   <tr> 
+
+        <th ><span class="red">*</span>调研标题：</th> 
+
+        <td><input  type="text" id="name" name="title" value="{weiwin:$set.title}" class="px require" style="width:400px;" /></td> 
+
+       </tr> 
+
+  
+
+
+
+		       <tr> 
+
+             <th><span class="red"></span>顶部图片：</th>
+
+        <td><input type="text" id="small_pic" name="pic" value="{weiwin:$set.pic}" class="px require" style="width:400px;" /> <script src="/tpl/static/upyun.js"></script><a href="###" onclick="upyunPicUpload('small_pic',700,420,'{weiwin:$token}')" class="ChooseImage">上传</a> <a href="###" onclick="viewImg('small_pic')" class="ChooseImage">预览</a></td> 
+
+       </tr>
+
+		<TR>
+
+			<th><span class="red">*</span>调研时间：</th>
+
+			<td><input type="input" class="px" id="statdate" value="<if condition="$set['stime'] neq ''">{weiwin:$set.stime}<else/><?php 
+
+			echo date('Y-m-d',mktime(0, 0, 0, date("m")  , date("d"), date("Y")));?></if>" onClick="WdatePicker()" name="stime" />                
+
+			到
+
+			<input type="input" class="px" id="enddate" value="<if condition="$set['etime'] neq ''">{weiwin:$set.etime}<else/><?php 
+
+			echo date('Y-m-d',mktime(0, 0, 0, date("m")  , date("d")+3, date("Y")));?></if>" name="etime" onClick="WdatePicker()"  /> 
+
+			</td>
+
+		</TR>
+
+	   
+
+        <TR>
+
+			<TH valign="top"><label for="info">开始说明：</label></TH>
+
+            <TD><textarea name="sinfo" id="content1"  rows="5" style="width:490px;height:360px">{weiwin:$set.sinfo}</textarea></TD>
+
+        </TR> 
+
+		<TR>
+
+			<TH valign="top"><label for="info">结束说明：</label></TH>
+
+            <TD><textarea name="einfo" id="content2"  rows="5" style="width:490px;height:360px">{weiwin:$set.einfo}</textarea></TD>
+
+        </TR>  
+
+		
+
+       <tr>         
+
+       <th>&nbsp;</th>
+
+       <td>
+
+		<!--input type="hidden" name="time" value="{weiwin:$set.time}" /-->
+
+       <button type="submit" class="btn btn-success">保存</button> &nbsp; <a href="{weiwin::U('Diaoyan/add',array('token'=>$token))}" class="btn btn-info">取消</a></td> 
+
+       </tr> 
+
+	   
+
+      </tbody> 
+
+     </table> 
+
+     </div>
+
+    
+
+   </form> 
+
+  </div> 
+
+<script language="javascript">
+
+$(function(){
+
+	$("#form").valid([
+
+	{ name:"name",simple:"名称",require:true},
+
+	{ name:"keyword",simple:"关键词",require:true}
+
+		
+
+	],true,true);
+
+
+
+})
+
+</script>
+
+  <include file="Public:footer" />

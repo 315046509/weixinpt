@@ -1,0 +1,49 @@
+<include file="Public:head"/>
+<div id="content" style="margin-left:1px; padding-top:1px;">
+<div class="container-fluid">
+<div class="quick-actions_homepage">
+  <ul class="quick-actions">
+    <li class="bg_lb"> <a href="{weiwin::U('Areply/index',array('token'=>$token))}"> <i class="icon-cog"></i> 首次关注回复 </a> </li>
+    <li class="bg_lg span3"> <a href="{weiwin::U('Tmpls/index',array('token'=>$token))}"> <i class="icon-globe"></i><span class="label label-important">100套3G建站模板</span>开始建设我的微站</a> </li>
+    <li class="bg_ly"> <a href="{weiwin::U('Lottery/index',array('token'=>$token))}"> <i class=" icon-heart"></i><span class="label label-success">营销活动随意组合</span> 互动营销模块 </a> </li>
+    <li class="bg_lo"> <a href="{weiwin::U('Requerydata/index',array('token'=>$token))}"> <i class="icon-bar-chart"></i> 统计数据</a> </li>
+    <li class="bg_ls"> <a href="{weiwin::U('Product/index',array('token'=>$token))}"> <i class="icon-shopping-cart"></i> 微商城</a> </li>
+    <li class="bg_lo span3"> <a href="/index.php?g=User&amp;m=AP&amp;a=index&amp;tab=09"> <i class=" icon-rss"></i><span class="label label-success">商家营销利器，快速吸粉必备</span>欢迎体验{weiwin::C('site_name')}智慧WIFI</a> </li>
+    <li class="bg_ls"> <a href="{weiwin::U('Diaoyan/index',array('token'=>$token))}"> <i class="icon-group"></i> 用户调研</a> </li>
+    <li class="bg_lb"> <a href="{weiwin::U('Img/index',array('token'=>$token))}"> <i class="icon-pencil"></i>图文素材</a> </li>
+    <li class="bg_lg"> <a href="{weiwin::U('Estate/index',array('token'=>$token))}"> <i class="icon-truck"></i> 行业解决方案</a><span class="label label-daner">16种行业解决模块</span> </li>
+    <li class="bg_lr"> <a href="{weiwin::U('Other/index',array('token'=>$token))}"> <i class="icon-volume-up"></i> 回答不上</a><span class="label label-info">关闭小黄鸡陪聊</span></li>
+  </ul>
+</div>
+<!--End-Action boxes-->
+<!--Chart-box-->
+<div class="row-fluid">
+  <div class="widget-box">
+    <div class="widget-title bg_lg"><span class="icon"><i class="icon-signal"></i></span>
+      <h5>运营数据</h5>
+    </div>
+    <div class="widget-content" >
+      <div class="row-fluid">
+        <div class="span9">
+          <div class="chart"></div>
+        </div>
+        <div class="span3">
+          <ul class="site-stats">
+            <li class="bg_lh"><i class="icon-user"></i> <strong><php>echo $_SESSION['diynum'];</php></strong> <small>今日关注粉丝</small></li>
+            <li class="bg_lh"><i class="icon-plus"></i> <strong><php>echo $userinfo['connectnum']-$_SESSION['connectnum'];</php></strong> <small>今日互动次数 </small></li>
+            <li class="bg_lh"><i class="icon-shopping-cart"></i> <strong>15</strong> <small>今日在线订单</small></li>
+            <li class="bg_lh"><i class="icon-tag"></i> <strong>{weiwin:$thisUser.activitynum}</strong> <small>今日活动参与</small></li>
+            <li class="bg_lh"><i class="icon-repeat"></i> <strong>0</strong> <small>接口失败次数</small></li>
+            <li class="bg_lh"><i class="icon-globe"></i> <strong><php>echo $_SESSION['diynum'];</php></strong> <small>今日官网访问</small></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+            <div class="alert alert-error">
+              <button class="close" data-dismiss="alert">×</button>
+              <strong>注意!</strong> 近期发现网络上有打着本站旗号，盗用本站内容和界面进行的诈骗活动，请不要上当受骗。我们的官网只有一个：{weiwin::C('site_url')} 在线客服QQ：{weiwin::C('site_qq')}！ </div>
+<!--End-Chart-box-->
+<!--end-main-container-part-->
+<include file="Public:footer"/> 

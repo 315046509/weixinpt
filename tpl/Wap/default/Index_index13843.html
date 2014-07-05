@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="{weiwin::RES}/css/143/css/snower.css?2013-12-09-1" media="all" />
+<link rel="stylesheet" type="text/css" href="{weiwin::RES}/css/143/css/common.css?2013-12-09-1" media="all" />
+<link rel="stylesheet" type="text/css" href="{weiwin::RES}/css/143/css/reset.css?2013-12-09-1" media="all" />
+<link rel="stylesheet" type="text/css" href="{weiwin::RES}/css/143/css/font-awesome.css?2013-12-09-1" media="all" />
+<link rel="stylesheet" type="text/css" href="{weiwin::RES}/css/143/css/home-48.css?2013-12-09-1" media="all" />
+<script type="text/javascript" src="{weiwin::RES}/css/143/js/maivl.js?2013-12-09-1"></script>
+<script type="text/javascript" src="{weiwin::RES}/css/143/js/jQuery.js?2013-12-09-1"></script>
+<script type="text/javascript" src="{weiwin::RES}/css/143/js/zepto.js?2013-12-09-1"></script>
+<script type="text/javascript" src="{weiwin::RES}/css/143/js/swipe.js?2013-12-09-1"></script>
+<title>{weiwin:$tpl.wxname}</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+<!-- Mobile Devices Support @begin -->
+<meta content="application/xhtml+xml;charset=UTF-8" http-equiv="Content-Type">
+<meta content="no-cache,must-revalidate" http-equiv="Cache-Control">
+<meta content="no-cache" http-equiv="pragma">
+<meta content="0" http-equiv="expires">
+<meta content="telephone=no, address=no" name="format-detection">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<!-- apple devices fullscreen -->
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<!-- Mobile Devices Support @end -->
+</head>
+<body onselectstart="return true;" ondragstart="return false;">
+<if condition="$homeInfo['play_wifi'] eq 'on'">
+<include file="Public:auth"/>
+</if>
+<if condition="$homeInfo['play_audio'] eq 'on'">
+<if condition="$homeInfo['musicurl'] neq false">
+<include file="Index:music"/>
+</if>
+</if>
+<script>
+	$().ready(function(){
+		$("#list_ul a").on("touchstart", function(){
+			this.className = "active";
+		}).on("touchend", function(){
+			this.className = "";
+		});
+	});
+</script>
+<div class="body">
+  <!--
+	幻灯片管理
+	-->
+  <div style="-webkit-transform:translate3d(0,0,0);">
+    <div id="banner_box" class="box_swipe">
+      <ul>
+        <volist name="flash" id="so">
+          <li> <a onClick="return false;"> <img src="{weiwin:$so.img}" alt="1" style="width:100%;" /> </a> </li>
+        </volist>
+      </ul>
+      <ol>
+        <volist name="flash" id="so"> <li
+          <if condition="$i eq 1"> class="on"</if>
+          >
+          </li>
+        </volist>
+      </ol>
+    </div>
+  </div>
+  <script>
+		$(function(){
+			new Swipe(document.getElementById('banner_box'), {
+				speed:500,
+				auto:3000,
+				callback: function(){
+					var lis = $(this.element).next("ol").children();
+					lis.removeClass("on").eq(this.index).addClass("on");
+				}
+			});
+		});
+	</script>
+    <header>
+    <div class="snower">
+      <script type="text/javascript"></script>
+      <script type="text/javascript" src="{weiwin::RES}/css/143/js/snower.js"></script>
+    </div>
+  </header>
+  <section>
+    <div>
+      <ul id="list_ul" class="list_ul">
+        <li class="box">
+          <volist name="info" id="vo">
+          <?php $xx=count($info); ?>
+          <php> $ii++; </php>
+          <dl>
+            <a href="<if condition="$vo['url'] eq ''">{weiwin::U('Wap/Index/lists',array('classid'=>$vo['id'],'token'=>$vo['token']))}
+            <else/>
+            {weiwin:$vo.url|htmlspecialchars_decode}
+            </if>
+            ">
+            <dd>
+              <div> <span class="{weiwin:$vo.icon}"></span> </div>
+            </dd>
+            <dt>{weiwin:$vo.name}</dt>
+            </a>
+          </dl>
+          <php>
+          if ($ii%3==0 & $ii!=$xx){echo "</li>
+        <li class='box'>";}
+          </php>
+          </volist>
+        </li>
+      </ul>
+    </div>
+  </section>
+</div>
+<div class="copyright">
+<if condition="$iscopyright eq 1">
+{weiwin:$homeInfo.copyright}
+<else/>
+{weiwin:$siteCopyright}
+</if>
+</div>  <include file="Index:styleInclude"/><include file="$cateMenuFileName"/> 
+
+	<if condition="ACTION_NAME eq 'index'">
+		<script type="text/javascript">
+			window.shareData = {  
+					"moduleName":"Index",
+					"moduleID": '0',
+					"imgUrl": "{weiwin:$homeInfo.picurl}", 
+					"timeLineLink": "{weiwin::C('site_url')}{weiwin::U(Index/ACTION_NAME,array('token'=>$_GET['token']))}",
+					"sendFriendLink": "{weiwin::C('site_url')}{weiwin::U(Index/ACTION_NAME,array('token'=>$_GET['token']))}",
+					"weiboLink": "{weiwin::C('site_url')}{weiwin::U(Index/ACTION_NAME,array('token'=>$_GET['token']))}",
+					"tTitle": "{weiwin:$homeInfo.title}",
+					"tContent": "{weiwin:$homeInfo.info}"
+				};
+		</script>
+	<else />
+		<script type="text/javascript">
+			window.shareData = {  
+				"moduleName":"Index",
+				"moduleID": '1',
+				"imgUrl": "{weiwin:$homeInfo.picurl}", 
+				"timeLineLink": "{weiwin::C('site_url')}{weiwin::U(Index/ACTION_NAME,array('token'=>$_GET['token'],'classid'=>$_GET['classid']))}",
+				"sendFriendLink": "{weiwin::C('site_url')}{weiwin::U(MODULE_NAME/ACTION_NAME,array('token'=>$_GET['token'],'classid'=>$_GET['classid']))}",
+				"weiboLink": "{weiwin::C('site_url')}{weiwin::U(MODULE_NAME/ACTION_NAME,array('token'=>$_GET['token'],'classid'=>$_GET['classid']))}",
+				"tTitle": "{weiwin:$homeInfo.title}",
+				"tContent": "{weiwin:$homeInfo.info}"
+			};
+		</script>	
+	
+	</if>
+{weiwin:$shareScript}
+</body>
+</html>

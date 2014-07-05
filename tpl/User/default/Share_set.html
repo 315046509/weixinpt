@@ -1,0 +1,52 @@
+<include file="Public:head"/>
+<link rel="stylesheet" type="text/css" href="./tpl/User/default/common/css/cymain.css" />
+
+
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+
+<div class="content" style="width:95%; background:none; margin-left:25px; border:none; margin-bottom:30px; margin-top:30px;" >
+  <div class="cLineB">
+    <div  class="quick-actions_homepage">
+    <ul class="quick-actions">
+      <li class="bg_lb"> <a href="{weiwin::U('ServiceUser/index',array('token'=>$token))}"> <i class="icon-glass"></i> 人工客服 </a> </li>
+      <li class="bg_ls"> <a href="{weiwin::U('Message/index',array('token'=>$token))}"> <i class="icon-envelope-alt"></i> 消息群发 </a> </li>
+      <li class="bg_lv"> <a href="{weiwin::U('Share/index',array('token'=>$token))}"> <i class="icon-google-plus"></i> 分享设置 </a> </li>
+      <li class="bg_dy"> <a href="{weiwin::U('Recognition/index',array('token'=>$token))}"> <i class="icon-star"></i> 渠道二维码</a> </li>
+      <li class="bg_lg"> <a href="{weiwin::U('Wechat_behavior/statistics',array('token'=>$token))}"> <i class="icon-plus"></i> 行为分析</a> </li>
+      <li class="bg_ly"> <a href="{weiwin::U('Wechat_group/groups',array('token'=>$token))}"> <i class="icon-tag"></i> 分组管理 </a> </li>
+      <li class="bg_lo"> <a href="{weiwin::U('Wechat_group/index',array('token'=>$token))}"> <i class="icon-map-marker"></i> 粉丝管理 </a> </li>
+      <li class="bg_db"> <a href="javascript:history.go(-1);"> <i class="icon-share-alt"></i> 返回</a> </li>
+    </ul>
+  </div>
+          <h4>分享设置</h4></div>
+
+<include file="Share:header"/>
+
+          <div class="ftip" style="margin:25px auto 5px auto;">在下面设置分享一次可以获取多少积分，分数会加在会员卡里面</div>
+          <form method="post" action="">
+          <div class="msgWrap form">
+            <table class="userinfoArea" border="0" cellspacing="0" cellpadding="0" width="100%">
+              <tbody>
+  
+              		<tr> 
+        <th align="right">分数</th> 
+        <td><input type="text" name="score" value="{weiwin:$record.score}" class="px require" style="width:200px;" /> 每次分享可以获取多少积分</td> 
+       </tr> 
+              		<tr> 
+        <th align="right">次数</th> 
+        <td><input type="text" name="daylimit" value="{weiwin:$record.daylimit}" class="px require" style="width:200px;" /> 每个人每天分享赚积分的最大次数，超过这个数字后分享也不会获取积分</td> 
+       </tr> 
+
+<tr>
+	<th></th>
+	<td><button type="submit" name="button" class="btn btn-success">保存</button>　<a href="javascript:history.go(-1);" class="btn btn-danger">取消</a></td>
+</tr>
+ </tbody>
+</table>
+            
+          </div>
+          </form>
+          
+        </div>
+<include file="Public:footer"/>

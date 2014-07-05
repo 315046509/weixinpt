@@ -1,0 +1,25 @@
+
+		<script type="text/javascript">
+			var imgsrc = $('.text img:first-child').attr('src');
+			
+			if(typeof(imgsrc) == "undefined"){
+				if("{weiwin:$res.pic}" == ""){
+					imgsrc = "{weiwin:$homeInfo.picurl}";
+				}else{
+					imgsrc = "{weiwin:$res.pic}";
+				}
+			}
+
+			window.shareData = {  
+				"moduleName":"Index",
+				"moduleID": '3',
+				"imgUrl": imgsrc, 
+				"timeLineLink": "{weiwin::C('site_url')}{weiwin::U(MODULE_NAME/ACTION_NAME,array('token'=>$_GET['token'],'classid'=>$_GET['classid'],'id'=>intval($_GET['id'])))}",
+				"sendFriendLink": "{weiwin::C('site_url')}{weiwin::U(MODULE_NAME/ACTION_NAME,array('token'=>$_GET['token'],'classid'=>$_GET['classid'],'id'=>intval($_GET['id'])))}",
+				"weiboLink": "{weiwin::C('site_url')}{weiwin::U(MODULE_NAME/ACTION_NAME,array('token'=>$_GET['token'],'classid'=>$_GET['classid'],'id'=>intval($_GET['id'])))}",
+				"tTitle": "{weiwin:$res.title}-{weiwin:$tpl.wxname}",
+				"tContent": "{weiwin:$res.info|htmlspecialchars_decode|strip_tags|trim|mb_substr=###,0,30,'utf-8'|str_replace="\\r\\n",' ',###|str_replace='"','',###}"
+			};
+		</script>	
+
+{weiwin:$shareScript}

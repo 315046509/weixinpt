@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="{weiwin::RES}/css/147/css/snower.css?2013-12-09-1" media="all" />
+<link rel="stylesheet" type="text/css" href="{weiwin::RES}/css/147/css/common.css?2013-12-09-1" media="all" />
+<link rel="stylesheet" type="text/css" href="{weiwin::RES}/css/147/css/reset.css?2013-12-09-1" media="all" />
+<link rel="stylesheet" type="text/css" href="{weiwin::RES}/css/147/css/home-11.css?2013-12-09-1" media="all" />
+<script type="text/javascript" src="{weiwin::RES}/css/147/js/maivl.js?2013-12-09-1"></script>
+<script type="text/javascript" src="{weiwin::RES}/css/147/js/jQuery.js?2013-12-09-1"></script>
+<link rel="stylesheet" type="text/css" href="{weiwin::RES}/css/reset.css?2013-9-13-2" media="all" />
+<link rel="stylesheet" type="text/css" href="{weiwin::RES}/css/font-awesome.css" media="all" />
+<title>{weiwin:$tpl.wxname}</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+<!-- Mobile Devices Support @begin -->
+<meta content="application/xhtml+xml;charset=UTF-8" http-equiv="Content-Type">
+<meta content="no-cache,must-revalidate" http-equiv="Cache-Control">
+<meta content="no-cache" http-equiv="pragma">
+<meta content="0" http-equiv="expires">
+<meta content="telephone=no, address=no" name="format-detection">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<!-- apple devices fullscreen -->
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<!-- Mobile Devices Support @end -->
+</head>
+<body onselectstart="return true;" ondragstart="return false;">
+<if condition="$homeInfo['play_wifi'] eq 'on'">
+<include file="Public:auth"/>
+</if>
+<if condition="$homeInfo['play_audio'] eq 'on'">
+<if condition="$homeInfo['bg_audio'] neq ''">
+<include file="Index:music"/>
+</if>
+</if>
+<link rel="stylesheet" type="text/css" href="{weiwin::RES}/css/147/css/font-awesome.css?v=2013121115" media="all" />
+<style>
+	.body{
+		max-width:640px;
+		margin:auto;
+		min-height:100%;
+		background: url({weiwin:$homeInfo['homeurl']}) no-repeat scroll 0 bottom;
+		position:relative;
+				background-size:100% 100%;
+	}
+</style>
+<div class="body">
+  <!--
+		用户分类管理
+        -->
+  <section>
+    <ul class="card_lol" style="display:block; padding-bottom:50px;">
+      <volist name="info" id="vo">
+        <li> <a href="<if condition="$vo['url'] eq ''">{weiwin::U('Wap/Index/lists',array('classid'=>$vo['id'],'token'=>$vo['token']))}
+          <else/>
+          {weiwin:$vo.url|htmlspecialchars_decode}
+          </if>
+          ">
+          <label>{weiwin:$vo.name}</label>
+          </a> </li>
+      </volist>
+    </ul>
+  </section>
+</div>
+<div class="copyright">
+<if condition="$iscopyright eq 1">
+{weiwin:$homeInfo.copyright}
+<else/>
+{weiwin:$siteCopyright}
+</if>
+</div>  <include file="Index:styleInclude"/><include file="$cateMenuFileName"/> 
+
+	<if condition="ACTION_NAME eq 'index'">
+		<script type="text/javascript">
+			window.shareData = {  
+					"moduleName":"Index",
+					"moduleID": '0',
+					"imgUrl": "{weiwin:$homeInfo.picurl}", 
+					"timeLineLink": "{weiwin::C('site_url')}{weiwin::U(Index/ACTION_NAME,array('token'=>$_GET['token']))}",
+					"sendFriendLink": "{weiwin::C('site_url')}{weiwin::U(Index/ACTION_NAME,array('token'=>$_GET['token']))}",
+					"weiboLink": "{weiwin::C('site_url')}{weiwin::U(Index/ACTION_NAME,array('token'=>$_GET['token']))}",
+					"tTitle": "{weiwin:$homeInfo.title}",
+					"tContent": "{weiwin:$homeInfo.info}"
+				};
+		</script>
+	<else />
+		<script type="text/javascript">
+			window.shareData = {  
+				"moduleName":"Index",
+				"moduleID": '1',
+				"imgUrl": "{weiwin:$homeInfo.picurl}", 
+				"timeLineLink": "{weiwin::C('site_url')}{weiwin::U(Index/ACTION_NAME,array('token'=>$_GET['token'],'classid'=>$_GET['classid']))}",
+				"sendFriendLink": "{weiwin::C('site_url')}{weiwin::U(MODULE_NAME/ACTION_NAME,array('token'=>$_GET['token'],'classid'=>$_GET['classid']))}",
+				"weiboLink": "{weiwin::C('site_url')}{weiwin::U(MODULE_NAME/ACTION_NAME,array('token'=>$_GET['token'],'classid'=>$_GET['classid']))}",
+				"tTitle": "{weiwin:$homeInfo.title}",
+				"tContent": "{weiwin:$homeInfo.info}"
+			};
+		</script>	
+	
+	</if>
+{weiwin:$shareScript}
+</body>
+</html>

@@ -1,0 +1,63 @@
+<include file="Public:head"/>
+<link rel="stylesheet" type="text/css" href="./tpl/User/default/common/css/cymain.css" />
+
+
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+
+<div class="content" style="width:95%; background:none; margin-left:25px; border:none; margin-bottom:30px; margin-top:30px;" >
+  <div class="cLineB">
+    <div  class="quick-actions_homepage">
+    <ul class="quick-actions">
+      <li class="bg_lb"> <a href="{weiwin::U('ServiceUser/index',array('token'=>$token))}"> <i class="icon-glass"></i> 人工客服 </a> </li>
+      <li class="bg_ls"> <a href="{weiwin::U('Message/index',array('token'=>$token))}"> <i class="icon-envelope-alt"></i> 消息群发 </a> </li>
+      <li class="bg_lv"> <a href="{weiwin::U('Share/index',array('token'=>$token))}"> <i class="icon-google-plus"></i> 分享设置 </a> </li>
+      <li class="bg_dy"> <a href="{weiwin::U('Recognition/index',array('token'=>$token))}"> <i class="icon-star"></i> 渠道二维码</a> </li>
+      <li class="bg_lg"> <a href="{weiwin::U('Wechat_behavior/statistics',array('token'=>$token))}"> <i class="icon-plus"></i> 行为分析</a> </li>
+      <li class="bg_ly"> <a href="{weiwin::U('Wechat_group/groups',array('token'=>$token))}"> <i class="icon-tag"></i> 分组管理 </a> </li>
+      <li class="bg_lo"> <a href="{weiwin::U('Wechat_group/index',array('token'=>$token))}"> <i class="icon-map-marker"></i> 粉丝管理 </a> </li>
+      <li class="bg_db"> <a href="javascript:history.go(-1);"> <i class="icon-share-alt"></i> 返回</a> </li>
+    </ul>
+  </div>
+          <h4>分享记录</h4></div>
+
+<include file="Share:header"/>
+
+    <div class="msgWrap">
+ <div style="background:#fefbe4;border:1px solid #f3ecb9;color:#993300;padding:10px;margin-top:5px;">下面为粉丝分享发送朋友圈的记录</div>
+<form method="post"  action="" id="info" >
+<TABLE class="ListProduct" border="0" cellSpacing="0" cellPadding="0" width="100%">
+<THEAD>
+<tr>
+<th>模块名称</th>
+<th width="60">模块ID</th>
+<th>分享人</th>
+<th>分享人手机</th>
+<th>时间</th>
+</tr>
+</THEAD>
+<TBODY>
+<TR></TR>
+<volist id="item" name="info">
+<TR>
+<TD>{weiwin:$item.moduleName}</TD>
+<TD>{weiwin:$item.moduleid}</TD>
+<TD>{weiwin:$item.user.truename}</TD>
+<TD>{weiwin:$item.user.tel}</TD>
+<TD class="norightborder"><?php echo date('Y-m-d H:i:s',$item['time']);?></TD>
+</TR>
+</volist>
+</TBODY>
+</TABLE>
+</form>
+
+</div>
+<div class="cLine">
+<div class="pageNavigator right">
+<div class="pages">{weiwin:$page}</div>
+</div>
+<div class="clr"></div>
+</div>
+          
+        </div>
+<include file="Public:footer"/>

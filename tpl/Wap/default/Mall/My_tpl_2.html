@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
+<meta name="MobileOptimized" content="240" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<meta name="Keywords" content="{weiwin:$metaTitle}" />
+<meta name="description" content="{weiwin:$metaTitle}" />
+<title>{weiwin:$metaTitle}</title>
+<link href="tpl/Wap/default/common/mall/bootstrap.css" rel="stylesheet">
+<link href="tpl/Wap/default/common/mall/wsp.css" rel="stylesheet">
+<link href="tpl/Wap/default/common/mall/tpl_2/ddlb.css" rel="stylesheet">
+<link href="tpl/Wap/default/common/mall/jquery.alerts.css" rel="stylesheet">
+<script src="{weiwin::$staticFilePath}/js/jquery.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="{weiwin::$staticFilePath}/js/main.js"></script>
+<script type="text/javascript" src="tpl/Wap/default/common/mall/jquery.cookie.js"></script>
+<script type="text/javascript" src="tpl/Wap/default/common/mall/jquery.alerts.js"></script>
+</head>
+<body>
+<style type="text/css">
+body {
+    background-image: url("tpl/Wap/default/common/mall/tpl_2/bg_body.png");
+    background-repeat: repeat;
+}
+.filler{
+    height: 35px;
+    width: 100%;
+}
+.fl{
+    background:url("tpl/Wap/default/common/mall/tpl_2/bg_fl.png") center no-repeat;
+    background-size:19px 15px;
+    width: 19px;
+    height: 15px;
+}
+.fix_top{
+    position: fixed;   bottom: 0px;
+    z-index: 100;
+    width: 100%;
+}
+</style>
+<div class="fix_top" id="header">
+    <div class="wrapper">
+        <dl id="navi_main">
+            <dd>
+                <a href="{weiwin::U('Product/index',array('token'=>$_GET['token'],'wecha_id'=>$_GET['wecha_id']))}"><img alt="Icon_cart"
+                src="tpl/Wap/default/common/mall/tpl_2/qutnur_5.png" style="width: 24px;height: 24px;margin-top: 6px;" /></a>
+            </dd>
+            <dd>
+                <a href="{weiwin::U('Product/cats',array('token'=>$_GET['token'],'wecha_id'=>$_GET['wecha_id']))}"><img alt="Icon_cart"
+                src="tpl/Wap/default/common/mall/tpl_2/qutnur_2.png" style="width: 24px;height: 24px;margin-top: 6px;" /></a>
+            </dd>
+
+            <dd>
+                <a href="{weiwin::U('Product/info',array('token'=>$_GET['token'],'wecha_id'=>$_GET['wecha_id']))}"><img alt="Icon_cart"
+                src="tpl/Wap/default/common/mall/tpl_2/qutnur_3.png" style="width: 24px;height: 24px;margin-top: 6px;" /></a>
+            </dd>
+            <dd>
+                <a href="{weiwin::U('Product/my',array('token'=>$_GET['token'],'wecha_id'=>$_GET['wecha_id']))}"><img alt="Icon_cart"
+                src="tpl/Wap/default/common/mall/tpl_2/qutnur_4.png" style="width: 24px;height: 24px;margin-top: 6px;" /></a>
+            </dd>            
+        </dl>
+        <div id="cart_button">
+            <a href="{weiwin::U('Product/cart',array('token'=>$_GET['token'],'wecha_id'=>$_GET['wecha_id']))}"> <img alt="Icon_cart"
+                src="tpl/Wap/default/common/mall/tpl_2/qutnur_1.png" style="width: 24px;height: 24px;margin-top: 6px;" />
+                <span id="cartCount" class="count">{weiwin:$totalProductCount}</span>
+            </a>
+        </div>
+    </div>
+</div>
+<div class="filler"></div>
+<if condition="$ordersCount neq 0">
+<volist name="orders" id="o" key="k">
+<div class="ddlb_wrap">
+          <eq name="k" value="1"><h3>我的订单</h3></eq>
+          <ul> <a href="{weiwin::U('Product/updateOrder',array('token'=>$token,'id'=>$o['id'],'wecha_id'=>$wecha_id))}"> <!-- 订单详情地址  -->
+          <li><span style="margin-right: 11%;margin-top:5px;color:gray;font-size:12px;display:block;">下单时间: {weiwin:$o.time|date="Y-m-d H:i:s",###}</span></li>
+          <volist name="o['products']" id="p">
+          <li>
+          <span class="ddlb_img"><img src="{weiwin:$p.logourl}" /></span> <!-- 每个物品的图片 -->
+          <span class="ddlb_h4h5">
+              <h4 style=""><php>$Uyghur = new UyghurCharUtilities();$Uyghur->getUyPFStr($p['name']); </php></h4>
+          </span>
+          <span class="ddlb_h6h7">
+            <h6> ￥{weiwin:$p.price}</h6>  <!-- 物品单价,宽度撑到小数点后2位 -->
+            <h6>  x{weiwin:$p.count}</h6>  <!-- 物品数量 -->
+          </span>
+          </li><div class="clfl"></div>
+          </volist>
+          </a>
+     </ul>
+     <div class="ddlb_hjsl">
+        <p>单价: </p>
+        <p>数量: </p>
+        <p>订单状态: </p>
+        <p>快递公司: </p>
+        <p>快递单号: </p>
+     </div>
+     <div class="ddlb_number">
+        <p>￥{weiwin:$o.price}</p>  <!-- 该笔订单总价格 -->
+        <p>{weiwin:$o.total}</p>  <!-- 该笔订单总货物数 -->
+        <p>
+        <p><php>if($o['paid']){echo '<span style="color:green">已付款</span>';}else{echo '<span style="color:red">未付款(点击查看付款)</span>';}</php></p>
+        </p>  <!-- 该笔订单总货物数 -->
+        <p>{weiwin:$o.logistics}</p>  <!-- 该笔订单总货物数 -->
+        <p>{weiwin:$o.logisticsid}</p>  <!-- 该笔订单总货物数 -->
+     </div>
+     <if condition="$o['handled'] eq 0">
+     <div class="ddlb_button">
+         <a style="color:#FFFFFF;font-family:Microsoft YaHei;font-size: 16px;" href="{weiwin::U('Product/deleteOrder',array('token'=>$token,'id'=>$o['id'],'wecha_id'=>$wecha_id))}">
+            <button class="ddlb_buttom_zf" type="button">
+             删除</button>
+         </a>
+     </div>
+     </if>
+     <div class="clfl"></div>
+                <div class="btn_more">
+                <a href="{weiwin::U('Product/updateOrder',array('token'=>$token,'id'=>$o['id'],'wecha_id'=>$wecha_id))}">立即支付此订单</a>
+                </div>
+</div>
+<div class="ddlb_footer" style="height:20px; background-image:url(tpl/Wap/default/common/mall/tpl_2/jv_bg.png); background-size:300px; width:300px; margin-left:auto; margin-right:auto; background-position:-0px 20px; position:relative; top:-9px; ">
+</div>
+</volist>
+<else/>
+<div style="padding:10px; text-align:center">没有订单</div>
+</if>
+<div style="height:30px;margin: 0; padding: 10px 7px; text-align: center;">
+    </div></body>
+</html>   

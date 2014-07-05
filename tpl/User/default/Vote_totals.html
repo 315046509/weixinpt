@@ -1,0 +1,97 @@
+<include file="Public:head"/> 
+  <link href="{weiwin::STATICS}/vote/wap/skins/all.css?v=0.9.1" rel="stylesheet">
+    <link href="{weiwin::STATICS}/vote/wap/vote.css" rel="stylesheet">
+  <script src="{weiwin::STATICS}/vote/wap/js/jquery.js"></script>
+  <script src="{weiwin::STATICS}/vote/wap/jquery.icheck.min.js?v=0.9.1"></script>
+
+<div class="content" style="width:95%; background:none; margin-left:25px; border:none; margin-bottom:30px; margin-top:30px;" >
+  <div class="cLineB">
+    <div  class="quick-actions_homepage">
+    <ul class="quick-actions">
+      <li class="bg_lb"> <a href="{weiwin::U('Lottery/index',array('token'=>$token))}"> <i class="icon-gift"></i> 大转盘 </a> </li>
+      <li class="bg_dy"> <a href="{weiwin::U('Coupon/index',array('token'=>$token))}"> <i class="icon-money"></i> 优惠券</a> </li>
+      <li class="bg_lg"> <a href="{weiwin::U('Guajiang/index',array('token'=>$token))}"> <i class="icon-cogs"></i> 刮刮卡</a> </li>
+      <li class="bg_lh"> <a href="{weiwin::U('LuckyFruit/index',array('token'=>$token))}"> <i class="icon-trophy"></i> 水果机 </a> </li>
+      <li class="bg_ly"> <a href="{weiwin::U('GoldenEgg/index',array('token'=>$token))}"> <i class="icon-trophy"></i> 砸金蛋 </a> </li>
+      <li class="bg_lo"> <a href="{weiwin::U('Wedding/index',array('token'=>$token))}"> <i class="icon-heart"></i> 微喜帖 </a> </li>
+      <li class="bg_ls"> <a href="{weiwin::U('Diaoyan/index',array('token'=>$token))}"> <i class="icon-bullhorn"></i> 微调研</a> </li>
+      <li class="bg_lr"> <a href="{weiwin::U('Vote/index',array('token'=>$token))}"> <i class="icon-bar-chart"></i> 微投票</a> </li>
+      <li class="bg_db"> <a href="javascript:history.go(-1);"> <i class="icon-share-alt"></i> 返回</a> </li>
+    </ul>
+  </div>
+    
+
+  <div class="layout clear">
+      <div class="skin skin-line">          
+         
+            <div class="skin-section">
+              <h4>{weiwin:$vote.title}</h4>  
+             <h3><a href="{weiwin::U('Vote/index')}" class="right btnGrayS vm" style="margin-top:-27px">返回</a></h3>
+              
+             <p class="modus"> <if condition="$vote['cknums'] eq 1"> 单选<else/>多选</if>投票，<span class="number">共有{weiwin:$count}人参与投票</span></p>
+              <ul class="list">
+              <volist name="vote_item" id="li"> 
+              <if condition="$vote['cknums'] eq 1">
+          <if condition="$vote['type'] eq 'text'">
+              <li>
+                <input tabindex="{weiwin:$i}" type="radio" name="vid" value="{weiwin:$li.id}" id="line-radio-{weiwin:$i}">
+                <label for="line-radio-{weiwin:$i}">{weiwin:$li.item}</label>
+                 
+                <span><img src="{weiwin::STATICS}/vote/wap/100.jpg" height="5" width="<if condition="$li['per'] eq 0">1<else/>{weiwin:$li.per}</if>" /> {weiwin:$li.per}%</span>             
+             </li>
+          <else/> <!--img-->
+                <li>
+                <span><img src="{weiwin:$li.startpicurl}" width="270" height="103"></span>
+                <input tabindex="{weiwin:$i}" type="radio" name="vid" value="{weiwin:$li.id}" id="line-radio-{weiwin:$i}">
+                <label for="line-radio-{weiwin:$i}">{weiwin:$li.item}</label>
+                 
+                <span><img src="{weiwin::STATICS}/vote/wap/100.jpg" height="5" width="<if condition="$li['per'] eq 0">1<else/>{weiwin:$li.per}</if>" /> {weiwin:$li.per}%</span>                 
+              </li>
+          </if>
+                 
+
+              <else/>
+                    <if condition="$vote['type'] eq 'text'">
+              <li>
+                <input tabindex="{weiwin:$i}" type="radio" name="vid" value="{weiwin:$li.id}" id="line-radio-{weiwin:$i}">
+                <label for="line-radio-{weiwin:$i}">{weiwin:$li.item}</label>
+                 
+                <span><img src="{weiwin::STATICS}/vote/wap/100.jpg" height="5" width="<if condition="$li['per'] eq 0">1<else/>{weiwin:$li.per}</if>" /> {weiwin:$li.per}%</span>             
+             </li>
+          <else/> <!--img-->
+                <li>
+                <span><img src="{weiwin:$li.startpicurl}" width="270" height="103"></span>
+                <input tabindex="{weiwin:$i}" type="radio" name="vid" value="{weiwin:$li.id}" id="line-radio-{weiwin:$i}">
+                <label for="line-radio-{weiwin:$i}">{weiwin:$li.item}</label>
+                 
+                <span><img src="{weiwin::STATICS}/vote/wap/100.jpg" height="5" width="<if condition="$li['per'] eq 0">1<else/>{weiwin:$li.per}</if>" /> {weiwin:$li.per}%</span>                 
+              </li>
+          </if>
+              </if>
+                </volist>                  
+        </ul>             
+             
+     </div>
+    
+
+<script>
+  $(document).ready(function(){
+     $('.skin-line input').each(function(){
+       var self = $(this),
+        label = self.next(),
+        label_text = label.text();
+        
+       label.remove();
+       self.iCheck({
+         checkboxClass: 'icheckbox_line-orange',
+         radioClass: 'iradio_line-orange',
+         insert: '<div class="icheck_line-icon"></div>' + label_text
+       });       
+        
+    });
+});
+</script>  
+</div> 
+</div>  
+</div>
+<include file="Public:footer"/>

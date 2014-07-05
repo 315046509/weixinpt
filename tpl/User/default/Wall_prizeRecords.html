@@ -1,0 +1,56 @@
+<include file="Public:head"/>
+<div class="content" style="width:95%; background:none; margin-left:25px; border:none; margin-bottom:30px; margin-top:30px;" >
+  <div class="cLineB">
+    <div  class="quick-actions_homepage">
+    <ul class="quick-actions">
+      <li class="bg_lb"> <a href="{weiwin::U('Taobao/index',array('token'=>$token))}"> <i class="icon-bullhorn"></i> 淘宝天猫 </a> </li>
+      <li class="bg_dy"> <a href="{weiwin::U('Api/index',array('token'=>$token))}"> <i class="icon-resize-full"></i> 第三方</a> </li>
+      <li class="bg_lg"> <a href="{weiwin::U('Reply/index',array('token'=>$token))}"> <i class="icon-book"></i> 留言板</a> </li>
+      <li class="bg_ly"> <a href="{weiwin::U('Greeting_card/index',array('token'=>$token))}"> <i class="icon-envelope"></i> 微贺卡 </a> </li>
+      <li class="bg_lo"> <a href="{weiwin::U('Shake/index',array('token'=>$token))}"> <i class="icon-bolt"></i> 摇一摇 </a> </li>
+      <li class="bg_ls"> <a href="{weiwin::U('Wall/index',array('token'=>$token))}"> <i class="icon-reorder"></i> 微信墙</a> </li>
+      <li class="bg_lr"> <a href="{weiwin::U('Kefu/index',array('token'=>$token))}"> <i class="icon-question-sign"></i> 智能客服</a> </li>
+      <li class="bg_db"> <a href="javascript:history.go(-1);"> <i class="icon-share-alt"></i> 返回</a> </li>
+    </ul>
+  </div>
+  <h4>{weiwin:$info.name}中奖名单</h4><a href="javascript:history.go(-1);"  class="right btnGrayS vm" style="margin-top:-27px" >返回</a>
+ </div>
+
+ <div class="msgWrap form">
+<div class="bdrcontent">
+<div id="div_ptype">
+<table class="ListProduct" border="0" cellSpacing="0" cellPadding="0" width="100%">
+<thead>
+<tr>
+<th style=" width:180px;">昵称</th>
+<th style=" width:180px;">手机</th>             
+<th style=" width:150px;" class="norightborder">奖项</th>
+</tr>
+</thead>
+<volist name="records" id="actinfo">
+<tr>
+<td>{weiwin:$actinfo.nickname}</td>
+<td>{weiwin:$actinfo.mp}</td>
+<td>{weiwin:$actinfo.prize}</td>
+</volist>
+</tr>
+
+</table>
+
+</div>
+</div>
+<div class="footactions" style="padding-left:10px">
+  <div class="pages">{weiwin:$page}</div>
+</div>
+          </div>
+  
+        </div>
+   
+        <div class="clr"></div>
+      </div>
+    </div>
+  </div> 
+  <!--底部-->
+  	</div>
+
+<include file="Public:footer"/>

@@ -1,0 +1,165 @@
+<link rel="stylesheet" href="{weiwin::RES}/css/auth/login.css" type="text/css">
+<script>
+
+// 此函数为和路由器交互的函数
+function login (token)
+{
+
+	$.ajax({
+	async:false,
+	type:"POST",
+	url:"http://{weiwin::$_GET['gwaddr']}/api/login.cgi",
+	//url:'http://1.1.1.1/api/webauth',                            
+	dataType: 'jsonp',
+	jsonp: 'jsonpcallback',  
+	data: { "token": token },		    
+	timeout: 1000,
+
+	success:function(msg)				    
+	{ 
+		if (msg.ret > 0)
+		{
+			alert("认证成功!");
+			window.location = "{weiwin::C('jumpurl')}"; 				
+			
+		}else {
+			alert("认证失败!");
+		}
+	},
+
+	error:function()
+	{	
+		alert("与服务器通讯失败!");
+	}
+	});
+
+
+}
+
+
+// 此函数为和服务器交互,获取token的并自动和路由器交互的函数
+function Submit()
+{
+	var code = $('#txtCode').val();
+
+	$.ajax({
+	async:false,
+	type:"POST",
+	url:"{weiwin::U('Auth/Login/login')}",                    
+	dataType: 'json',
+	data: { "code": code,"token":"{weiwin::$token}","authtype":$('#authtype').val() },
+	timeout: 1000,
+
+	success:function(msg)				    
+	{ 
+		if (msg.ret > 0)
+		{
+			//alert(1);
+			login(msg.token);
+		}else{
+			alert('密码错误！');
+		}
+	},
+
+	error:function()
+	{	
+	}
+	});
+
+}
+
+function showlogin(obj){
+	if($('#login_con').is(':hidden')){
+		$('.regist_btn').html('关闭');		
+	}else{
+		$('.regist_btn').html('登录');
+	}
+	
+	$('#login_con').slideToggle();
+}
+
+function change(str){
+	 
+	$('#'+str).addClass('current');
+	if(str == 'sms'){
+		$('#mobile').html('<input class="login_input " style="border: 1px solid #cccccc;" type="text" placeholder="手机号">	');
+			$('.getsmspass').show();
+			$('#weixin').removeClass('current');
+			$('#authtype').val('sms');
+	}else{
+		$('#mobile').html('请扫描二维码关注本店微信公众号，回复“P”可得到上网密码');
+		$('.getsmspass').hide();
+		$('#sms').removeClass('current');
+		$('#authtype').val('weixim');
+	}
+	
+}
+
+function getsmspass(){
+	
+	var phone = $('#txtMobile').val();
+
+	$.ajax({
+	async:false,
+	type:"POST",
+	url:"{weiwin::U('Auth/Login/sendsms')}",                    
+	dataType: 'json',
+	data: { "phone": phone },
+	timeout: 1000,
+
+	success:function(msg)				    
+	{ 
+		if (msg.ret > 0)
+		{
+			//alert(msg.msg);
+			$('#txtCode').val(msg.msg);
+			
+		}else{
+			alert('密码发送失败');
+		}
+	},
+
+	error:function()
+	{	
+	}
+	});
+}
+
+</script>
+	
+   <div class="container " id="center_view">
+
+            <div class="H">
+               <a class="back"  target="_self" isAnjukeSite=1>微我网</a>
+                免费上网
+                <a class="login_btn regist_btn" target="_self" href="javascript:showlogin(this);"  >登录</a>
+            </div>
+
+<div id="login_con"  style='display:none'>
+	<span class="login_note"> </span>
+	<div class="t_Login" id="t_Login">
+		 <span class='current' id='sms' onclick="change('sms')"><i class="t_icon " >手机</i></span>
+         <span  id='weixin' onclick="change('weixin')"><i class="t_icon " >微信</i></span>
+        <span><i class="t_icon weibo">微博</i></span>
+        <span><i class="t_icon qq"><a href='index.php?g=Auth&m=Test&a=login&type=qq' >QQ</a></i></span>
+         
+	</div>
+	
+	<div class="login_self">	
+		 
+		<div class="inputText" id='mobile'>
+		<input class="login_input " id='txtMobile' style="border: 1px solid #cccccc;" type="text" placeholder="手机号">		
+		</div>
+		<div class="inputText">
+		<input type='hidden' id='authtype'  value='sms'>
+		<input class="login_input " id='txtCode' style="border: 1px solid #cccccc;" type="text" placeholder="密码">
+         <span onclick="getsmspass()" target="_self" class="getsmspass">获取密码</span>
+		</div>	
+	
+		<span class="login_btn login_btn_now js_login" onclick='Submit()'>立即登录</span>
+		</div>
+   
+</div>
+    
+
+</div>

@@ -1,0 +1,127 @@
+<include file="Public:head"/>
+<script src="./tpl/User/default/common/js/date/WdatePicker.js"></script>
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+ <script src="/tpl/static/upyun.js"></script>
+<div class="content" style="width:95%; background:none; margin-left:25px; border:none; margin-bottom:30px; margin-top:30px;" >
+  <div class="cLineB">
+    <div  class="quick-actions_homepage">
+    <ul class="quick-actions">
+      <li class="bg_lb"> <a href="{weiwin::U('Taobao/index',array('token'=>$token))}"> <i class="icon-bullhorn"></i> 淘宝天猫 </a> </li>
+      <li class="bg_dy"> <a href="{weiwin::U('Api/index',array('token'=>$token))}"> <i class="icon-resize-full"></i> 第三方</a> </li>
+      <li class="bg_lg"> <a href="{weiwin::U('Reply/index',array('token'=>$token))}"> <i class="icon-book"></i> 留言板</a> </li>
+      <li class="bg_ly"> <a href="{weiwin::U('Greeting_card/index',array('token'=>$token))}"> <i class="icon-envelope"></i> 微贺卡 </a> </li>
+      <li class="bg_lo"> <a href="{weiwin::U('Shake/index',array('token'=>$token))}"> <i class="icon-bolt"></i> 摇一摇 </a> </li>
+      <li class="bg_ls"> <a href="{weiwin::U('Wall/index',array('token'=>$token))}"> <i class="icon-reorder"></i> 微信墙</a> </li>
+      <li class="bg_lr"> <a href="{weiwin::U('Kefu/index',array('token'=>$token))}"> <i class="icon-question-sign"></i> 智能客服</a> </li>
+      <li class="bg_db"> <a href="javascript:history.go(-1);"> <i class="icon-share-alt"></i> 返回</a> </li>
+    </ul>
+  </div>
+          <h4>编辑贺卡</h4><a href="{weiwin::U('User/Greeting_card/index')}" class="right btn btn-info" style="margin-top:-27px">返回</a></div>
+          <form method="post" action="" enctype="multipart/form-data">
+          <div class="msgWrap form">
+            <table class="userinfoArea" border="0" cellspacing="0" cellpadding="0" width="100%">
+              <tbody>
+               <tr style="display:">
+                  <th>
+                    <label for="title">触发关键词：</label></th>
+                  <td><input type="input" class="px" id="keyword" value="{weiwin:$greeting_card['keyword']}" required="" name="keyword" style="width:380px;"> </td>
+                </tr>
+                <tr>
+                  <th>
+                    <label for="title">标题名字：</label></th>
+                  <td><input type="input" class="px" id="name" required="" value="{weiwin:$greeting_card['title']}" name="title" style="width:380px;"> </td>
+                </tr>
+                <tr style="display:">
+					  <th width="120"><label for="picurl">回复时封面图片：</label></th>
+					  <td><if condition="$greeting_card['picurl'] eq ''"><else/><img id="suicaipic1" src="{weiwin:$greeting_card['picurl']}" width="200"/><br></if>
+					  <input class="px" name="picurl" value="{weiwin:$greeting_card['picurl']}" id="suicai1" style="width:280px;">
+					  <span class="help-inline">
+						<a href="javascript:void(0)" onclick="upyunPicUpload('suicai1',700,420,'{weiwin:$token}')" class="ChooseImage">上传</a>
+						<a href="###" onclick="viewImg('suicai1')" class="ChooseImage">预览</a>
+					  </span>
+					  </td>
+                </tr>
+                <tr>
+                  <th width="120"><label for="bjurl">背景图片：</label></th>
+                  <td><if condition="$greeting_card['bakcground_url'] eq ''"><else/><img id="suicaipic2" src="{weiwin:$greeting_card['bakcground_url']}" width="200"><br></if>
+                  <input class="px" name="bakcground_url" value="" id="suicai2" style="width:280px;">  
+				  <span class="help-inline">
+					<a href="javascript:void(0)" onclick="upyunPicUpload('suicai2',700,420,'{weiwin:$token}')" class="ChooseImage">上传</a>
+					<a href="###" onclick="viewImg('suicai2')" class="ChooseImage">预览</a>
+				 </span> 只改变选中模版的背景图!
+</td>
+                </tr>
+                <tr>
+    <th><label for="title">背景音乐：</label></th>
+     <td>
+	 
+	 <input class="px" name="mp3" value="{weiwin:$greeting_card['mp3']}" id="suicai3" style="width:300px" onchange="document.getElementById('plmp3').src=this.value"> 
+	 <a href="###" onclick="chooseFile('suicai3','music')" class="ChooseImage">选择</a><br />
+	 
+	 <audio id="plmp3" src="" preload="none"></audio><font color="#FF0000"></font></td>
+    </tr>
+    <tr>
+	 <th><label for="title">选择背景动画：</label></th>
+	  <td>
+		<select name="type"> 
+			<option value=""   <if condition="$greeting_card['type'] eq ''">selected</if>>请选择</option>
+			 <option value="1"  <if condition="$greeting_card['type'] eq 1">selected</if>>下落的枫叶</option>
+			 <option value="2" <if condition="$greeting_card['type'] eq 2">selected</if>>飘雪</option>
+			 <option value="3" <if condition="$greeting_card['type'] eq 3">selected</if>>驱驴</option
+			 ><option value="4" <if condition="$greeting_card['type'] eq 4">selected</if>>飘玫瑰</option
+			></select> 
+		</td>
+	</tr>
+  <tr></tr>
+  <tr>
+                  <th valign="top">
+					<label for="text">默认文字：</label>
+				  </th>
+                  <td><textarea class="px" id="Hfcontent" name="info" style="width:280px;  height:40px">{weiwin:$greeting_card['info']}</textarea><font color="#FF0000"></font>
+                    尽量控制在60字左右，生日卡，就写生日祝语。 圣诞卡就圣诞祝语...</td>
+                </tr> 
+				<tr>
+                  <th valign="top">
+					<label for="text">版权信息：</label>
+				  </th>
+                  <td><textarea class="px" id="Hfcontent" name="copy" style="width:280px;  height:40px">{weiwin:$greeting_card['copy']}</textarea><font color="#FF0000"></font>
+                    尽量控制在10字左右，</td>
+                </tr>
+                                                   
+                 <tr>
+                  <th valign="top"><label for="text">转发时提醒文字：</label></th>
+                  <td><input class="px" name="zfname" value="{weiwin:$greeting_card['zfname']}" id="zfname" style="width:100px;"> 
+                    </td>
+                </tr>
+               <tr>
+				   <th>是否显示转发数：</th>
+				   <td>
+						<select name="status"> 
+							<option value="0">不显示</option>
+							<option value="1">显示</option>
+						</select> 
+				    </td>
+				</tr>
+                <tr>
+                  <th> 
+					<label for="title">默认名字：</label>
+				   </th>
+                  <td><input class="px" name="name" value="{weiwin:$greeting_card['name']}" id="suicai2" style="width:100px;"><font color="#FF0000"></font></td>
+                </tr>
+                <tr> 
+                  <th></th>
+                  <td>
+					<button type="submit" name="button" class="btn btn-success">保存</button>　
+					<a href="" class="btn btn-danger">取消</a>
+				  </td>
+                </tr>
+              </tbody>
+            </table>
+            
+          </div>
+          </form>
+          
+        </div>
+        </div>	
+<include file="Public:footer"/>

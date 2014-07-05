@@ -1,0 +1,60 @@
+﻿  <div class="cLineB">
+    <div  class="quick-actions_homepage">
+    <ul class="quick-actions">
+    <if condition="$thisUser[qc] eq '1'">
+      <li class="bg_ls"> <a href="{weiwin::U('Car/index',array('token'=>$token))}"> <i class="icon-truck"></i> 微汽车 </a> </li>
+      </if>
+      <if condition="$thisUser[cy] eq '1'">
+      <li class="bg_lb"> <a href="{weiwin::U('Dining/orders',array('token'=>$token,'dining'=>1))}"> <i class="icon-glass"></i> 微餐饮 </a> </li>
+      </if>
+      <if condition="$thisUser[wy] eq '1'">
+      <li class="bg_lb"> <a href="{weiwin::U('Waimai/orders',array('token'=>$token,'dining'=>1))}"> <i class="icon-volume-up"></i> 微外卖 </a> </li>
+      </if>
+      <if condition="$thisUser[fc] eq '1'">
+      <li class="bg_dy"> <a href="{weiwin::U('Estate/index',array('token'=>$token))}"> <i class="icon-star"></i> 微房产</a> </li>
+      </if>
+      <if condition="$thisUser[jd] eq '1'">
+      <li class="bg_lg"> <a href="{weiwin::U('Hotels/index',array('token'=>$token))}"> <i class="icon-tag"></i> 微酒店</a> </li>
+      </if>
+      <if condition="$thisUser[yl] eq '1'">
+      <li class="bg_ly"> <a href="{weiwin::U('Medical/index',array('token'=>$token))}"> <i class="icon-plus"></i> 微医疗 </a> </li>
+      </if>
+      <if condition="$thisUser[dy] eq '1'">
+      <li class="bg_lr"> <a href="{weiwin::U('Dianying/index',array('token'=>$token))}"> <i class="icon-film"></i> 微电影</a> </li>
+      </if>
+      <if condition="$thisUser[mr] eq '1'">
+      <li class="bg_ls"> <a href="{weiwin::U('Meirong/index',array('token'=>$token))}"> <i class="icon-cut"></i> 微美容</a> </li>
+      </if>
+      <if condition="$thisUser[jb] eq '1'">
+      <li class="bg_lr"> <a href="{weiwin::U('Jiuba/index',array('token'=>$token))}"> <i class="icon-glass"></i> 微酒吧</a> </li>
+      </if>
+      <if condition="$thisUser[jy] eq '1'">
+      <li class="bg_lv"> <a href="{weiwin::U('School/index',array('token'=>$token))}"> <i class="icon-book"></i> 微教育</a> </li>
+      </if>
+      <if condition="$thisUser[hd] eq '1'">
+      <li class="bg_ls"> <a href="{weiwin::U('Huadian/index',array('token'=>$token))}"> <i class="icon-asterisk"></i> 微花店</a> </li>
+      </if>
+      <if condition="$thisUser[zw] eq '1'">
+      <li class="bg_lr"> <a href="{weiwin::U('Zhengwu/index',array('token'=>$token))}"> <i class="icon-star"></i> 微政务</a> </li>
+      </if>
+      <if condition="$thisUser[js] eq '1'">
+      <li class="bg_lv"> <a href="{weiwin::U('Jianshen/index',array('token'=>$token))}"> <i class="icon-magnet"></i> 微健身</a> </li>
+      </if>
+      <if condition="$thisUser[ly] eq '1'">
+      <li class="bg_dy"> <a href="{weiwin::U('Lvyou/index',array('token'=>$token))}"> <i class="icon-plane"></i> 微旅游</a> </li>
+      </if>
+      <if condition="$thisUser[sp] eq '1'">
+      <li class="bg_lg"> <a href="{weiwin::U('Shipin/index',array('token'=>$token))}"> <i class="icon-lemon"></i> 微食品</a> </li>
+      </if>
+      <if condition="$thisUser[ktv] eq '1'">
+      <li class="bg_lg"> <a href="{weiwin::U('Ktv/index',array('token'=>$token))}"> <i class="icon-music"></i> 微KTV</a> </li>
+      </if>
+      <if condition="$thisUser[hq] eq '1'">
+      <li class="bg_lg"> <a href="{weiwin::U('Hunqing/index',array('token'=>$token))}"> <i class="icon-heart"></i> 微婚庆</a> </li>
+      </if>
+      <if condition="$thisUser[yy] eq '1'">
+      <li class="bg_lo"> <a href="{weiwin::U('Reservation/index',array('token'=>$token))}"> <i class="icon-map-marker"></i> 微预约 </a> </li>
+      </if>
+      <li class="bg_db"> <a href="javascript:history.go(-1);"> <i class="icon-share-alt"></i> 返回</a> </li>
+    </ul>
+  </div>

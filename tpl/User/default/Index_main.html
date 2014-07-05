@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>微信公众平台管理系统</title>
+<link href="{weiwin::RES}/main/css/main.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="{weiwin::RES}/main/js/jquery-1.7.2.min.js"></script>
+  <script>
+function doit(month){
+location.href= '/index.php?g=User&m=Requerydata&a=index&token={weiwin:$token}&month='+month+'&year='+$('#year').val();
+}
+</script>
+</head>
+
+<body>
+<div id="iframe_page">
+<div class="iframe_content">
+<link href="{weiwin::RES}/main/css/account.css" rel="stylesheet" type="text/css">
+<div id="home">
+	<div class="welcome"><div></div><span>{weiwin:$Think.session.uname}</span></div>
+	<div class="info">
+		<div class="member">
+			<div class="face"><img src="{weiwin:$wecha.headerpic}" width="100"></div>
+			<ul class="info_list">
+				<li><img src="{weiwin::RES}/main/images/icon-0.png">公众账号：
+				<if condition="$_SESSION[wxid]==null">
+				未绑定【<a href="{weiwin::U('Index/add')}">绑定帐号</a>】
+				<else/>
+				<a href="{weiwin::U('Index/edit',array('id'=>$vo['id']))}">{weiwin:$wecha.wxname}</a>
+				</if>
+				</li>
+				<li><img src="{weiwin::RES}/main/images/icon-1.png">帐号状态：正常</li>
+				<li><img src="{weiwin::RES}/main/images/icon-2.png">会员等级：<php>echo $userinfo['name'];</php> </li>
+				<li><img src="{weiwin::RES}/main/images/icon-3.png">开通时间：{weiwin:$thisUser.createtime|date="Y-m-d",###}</li>
+				<li><img src="{weiwin::RES}/main/images/icon-4.png">到期时间：{weiwin:$thisUser.viptime|date="Y-m-d",###}</li>
+<!--
+			<li>图文自定义：{weiwin:$thisUser.diynum}/{weiwin:$userinfo.diynum}</li>
+	
+			<li>活动创建数：{weiwin:$thisUser.activitynum}/{weiwin:$userinfo.activitynum}</li>
+			<li>请求数：{weiwin:$thisUser.connectnum}/{weiwin:$userinfo.connectnum}</li>
+	
+			<li>请求数剩余：<php>echo ($userinfo['connectnum']-$_SESSION['connectnum']);</php></li>
+			<li>已使用：<php>echo $_SESSION['diynum'];</php></li>
+	
+			<li>当月赠送请求数：{weiwin:$userinfo.connectnum}</li>
+			<li>当月剩余请求数：<php>echo $userinfo['connectnum']-$_SESSION['connectnum'];</php></li>
+			-->
+			</ul>
+			
+
+	
+			
+
+		
+		
+		</div>
+				<div class="data">
+			<div class="d0"><a href="{weiwin::U('Requerydata/index',array('token'=>$token))}" group="statistics"><h1><?php echo $list['3g']+$list['textnum']+$list['imgnum']+$list['videonum']+$list['other']?></h1><h2>今日新增粉丝</h2></a></div>
+			<div class="d1"><a href="{weiwin::U('Requerydata/index',array('token'=>$token))}" group="statistics"><h1><php>echo $_SESSION['diynum'];</php></h1><h2>今日官网访问</h2></a></div>
+            <div class="d2"><a href="{weiwin::U('Requerydata/index',array('token'=>$token))}" group="app"><h1>{weiwin:$thisUser.activitynum}</h1><h2>今日微信预约</h2></a></div>
+			<div class="d3"><a href="{weiwin::U('Requerydata/index',array('token'=>$token))}" group="action"><h1>{weiwin:$thisUser.connectnum}</h1><h2>今日参与活动</h2></a></div>
+            <!--
+            <div class="d4"><a href="{weiwin::U('Requerydata/index',array('token'=>$token))}" group="hd"><h1>{weiwin:$thisUser.connectnum}</h1><h2>今日参与活动</h2></a></div>
+            <div class="d5"><a href="{weiwin::U('Requerydata/index',array('token'=>$token))}" group="bj"><h1>{weiwin:$thisUser.connectnum}</h1><h2>今日参与活动</h2></a></div>
+            -->
+				</div>
+		<div class="clear"></div>
+	</div>
+	
+	</div>	</div>
+<div>
+</div></div></body></html>

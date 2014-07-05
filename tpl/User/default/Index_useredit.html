@@ -1,0 +1,36 @@
+<include file="Index:header"/>
+<div class="content" style="width:98%; background:none; margin-left:15px; border:none; margin-bottom:30px; margin-top:50px;" >
+      <div class="row-fluid">
+        <div class="span12">
+          <div class="widget-box">
+            <div class="widget-title"> <span class="icon"> <i class="icon-info-sign"></i> </span>
+              <h5>你正在修改 {weiwin:$Think.session.uname} 密码</h5>
+            </div>
+            <div class="widget-content nopadding">
+              <form class="form-horizontal" method="post" action="{weiwin::U('Index/usersave')}" name="password_validate" id="password_validate" novalidate="novalidate">
+                <div class="control-group">
+                  <label class="control-label">新密码</label>
+                  <div class="controls">
+                    <input type="password" name="password" id="password" />
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label class="control-label">再输一遍</label>
+                  <div class="controls">
+                    <input type="password" name="password" id="password" />
+                  </div>
+                </div>
+                <div class="form-actions">
+                  <input type="submit" name="button" value="提交" class="btn btn-success">
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        
+        <div class="clr"></div>
+      </div>
+    </div>
+  </div>
+  <!--底部-->
+  	</div>

@@ -1,0 +1,135 @@
+<include file="Public:head"/>
+<script src="/tpl/static/fushionCharts/JSClass/FusionCharts.js" type="text/javascript"></script>   
+<link rel="stylesheet" type="text/css" href="./tpl/User/default/common/css/cymain.css" />
+<div class="content" style="width:95%; background:none; margin-left:25px; border:none; margin-bottom:30px; margin-top:30px;" >
+  <div class="cLineB">
+    <div  class="quick-actions_homepage">
+    <ul class="quick-actions">
+      <li class="bg_lb"> <a href="{weiwin::U('ServiceUser/index',array('token'=>$token))}"> <i class="icon-glass"></i> 人工客服 </a> </li>
+      <li class="bg_ls"> <a href="{weiwin::U('Message/index',array('token'=>$token))}"> <i class="icon-envelope-alt"></i> 消息群发 </a> </li>
+      <li class="bg_lv"> <a href="{weiwin::U('Share/index',array('token'=>$token))}"> <i class="icon-google-plus"></i> 分享设置 </a> </li>
+      <li class="bg_dy"> <a href="{weiwin::U('Recognition/index',array('token'=>$token))}"> <i class="icon-star"></i> 渠道二维码</a> </li>
+      <li class="bg_lg"> <a href="{weiwin::U('Wechat_behavior/statistics',array('token'=>$token))}"> <i class="icon-plus"></i> 行为分析</a> </li>
+      <li class="bg_ly"> <a href="{weiwin::U('Wechat_group/groups',array('token'=>$token))}"> <i class="icon-tag"></i> 分组管理 </a> </li>
+      <li class="bg_lo"> <a href="{weiwin::U('Wechat_group/index',array('token'=>$token))}"> <i class="icon-map-marker"></i> 粉丝管理 </a> </li>
+      <li class="bg_db"> <a href="javascript:history.go(-1);"> <i class="icon-share-alt"></i> 返回</a> </li>
+    </ul>
+  </div>
+              <h4 class="left">粉丝行为统计分析</h4>
+                  
+              <div class="clr"></div>
+          </div>
+ <div class="cLineD">
+
+         </div>
+          <div class="cLine">
+    <div class="ftip" style="margin:0 auto">高级服务号才能使用此功能</div>
+</div>
+ <div class="msgWrap form">
+<ul id="tags" style="width:100%">
+		<li <weiwinif where="$listinfo eq '1'">class="selectTag"</weiwinif>>
+				<a href="{weiwin::U('Wechat_behavior/statistics')}">{weiwin:$days}日行为统计分析</a> 
+			</li>
+			<li <weiwinif where="$listinfo neq '1'">class="selectTag"</weiwinif>>
+				<a href="{weiwin::U('Wechat_behavior/statisticsTrend')}">趋势对比分析</a> 
+			</li>
+			<weiwinif where="$detail eq 1">
+			<li style="float:right;background:none">
+				<a href="{weiwin::U('Wechat_behavior/statistics')}" style="background:none">返回</a> 
+			</li>
+			</weiwinif>
+			<div class="clr" style="height:1px;background:#eee;margin-bottom:20px;"></div>
+		</ul>
+</div>
+
+          <div class="msgWrap" style="margin-top:50px;">
+         <div id="chartdiv1" align="center"></div>
+         <weiwinif where="$statisticsAll eq 1">
+         <script type="text/javascript">
+					var chart = new FusionCharts("/tpl/static/fushionCharts/Charts/Pie3D.swf", "ChartId", "600", "500", "0", "1");
+					//chart.setTransparent("false");
+					chart.setDataXML('{weiwin:$xml}');
+					//chart.setDataURL("data.html");
+					chart.render("chartdiv1");
+					</script>
+         </weiwinif>
+         <weiwinif where="$detail eq 1">
+					<script type="text/javascript">
+					var chart = new FusionCharts("/tpl/static/fushionCharts/Charts/Bar2D.swf", "ChartId", "600", "500", "0", "1");
+					chart.setDataXML('{weiwin:$xml}');
+					chart.render("chartdiv1");
+					</script>
+					</weiwinif>
+					<weiwinif where="$statisticsTrend eq 1">
+					<script type="text/javascript">
+					var chart = new FusionCharts("/tpl/static/fushionCharts/Charts/MSArea.swf", "ChartId", "900", "500", "0", "1");
+					chart.setDataXML('{weiwin:$xml}');
+					chart.render("chartdiv1");
+					</script>
+					</weiwinif>
+          </div>
+<?php if (!$statisticsTrend){
+	?>
+
+           <table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="90%">
+              <thead>
+                <tr>
+					<th style="width:600px;">&nbsp;模块</th>
+					<th>次数</th>
+					<weiwinif where="$detail neq 1"><th>详情</th></weiwinif>
+                </tr>
+              </thead>
+              <tbody>
+			  <weiwinlist array="list" foreach="list">
+                <tr>
+                  <td>&nbsp;{weiwin:$list.name}</td>
+                  <td>{weiwin:$list.count}</td>
+                  <weiwinif where="$detail neq 1">
+                  <td>
+						<a href="{weiwin::U('Wechat_behavior/statisticsOfModule',array('module'=>$list['module']))}">详情</a>　
+						
+						
+				   </td>
+				   </weiwinif>
+                </tr>
+      			</weiwinlist>
+                 <tr>
+
+                </tr>
+              </tbody>
+            </table>
+            	<?php
+}else {
+	?>
+	<table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="90%">
+              <thead>
+                <tr>
+					<th style="width:600px;">&nbsp;模块</th>
+					<th align="center" style="text-align:center">上一周期</th>
+					<th align="center" style="text-align:center">本周期</th>
+					<th align="center" style="text-align:center">趋势</th>
+                </tr>
+              </thead>
+              <tbody>
+			  <weiwinlist array="list" foreach="list">
+                <tr>
+                  <td>&nbsp;{weiwin:$list.name}</td>
+                  <td align="center">{weiwin:$list.lastcount}</td>
+                   <td align="center">{weiwin:$list.count}</td>
+                 
+                  <td align="center">
+						<?php if ($list['count']>$list['lastcount']){echo '<span style="color:#f30;font-size:14px;font-weight:bold">↑</span>';}elseif ($list['count']<$list['lastcount']){echo '<span style="color:green;font-size:14px;font-weight:bold">↓</span>';}else {echo '-';}?>
+				   </td>
+				   
+                </tr>
+      			</weiwinlist>
+                 <tr>
+
+                </tr>
+              </tbody>
+            </table>
+	<?php
+}
+?>
+        </div>	
+<include file="Public:footer"/>

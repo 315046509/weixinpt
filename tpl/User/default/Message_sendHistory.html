@@ -1,0 +1,81 @@
+<include file="Public:head"/>
+<div class="content" style="width:95%; background:none; margin-left:25px; border:none; margin-bottom:30px; margin-top:30px;" >
+  <div class="cLineB">
+    <div  class="quick-actions_homepage">
+    <ul class="quick-actions">
+      <li class="bg_lb"> <a href="{weiwin::U('ServiceUser/index',array('token'=>$token))}"> <i class="icon-glass"></i> 人工客服 </a> </li>
+      <li class="bg_ls"> <a href="{weiwin::U('Message/index',array('token'=>$token))}"> <i class="icon-envelope-alt"></i> 消息群发 </a> </li>
+      <li class="bg_lv"> <a href="{weiwin::U('Share/index',array('token'=>$token))}"> <i class="icon-google-plus"></i> 分享设置 </a> </li>
+      <li class="bg_dy"> <a href="{weiwin::U('Recognition/index',array('token'=>$token))}"> <i class="icon-star"></i> 渠道二维码</a> </li>
+      <li class="bg_lg"> <a href="{weiwin::U('Wechat_behavior/statistics',array('token'=>$token))}"> <i class="icon-plus"></i> 行为分析</a> </li>
+      <li class="bg_ly"> <a href="{weiwin::U('Wechat_group/groups',array('token'=>$token))}"> <i class="icon-tag"></i> 分组管理 </a> </li>
+      <li class="bg_lo"> <a href="{weiwin::U('Wechat_group/index',array('token'=>$token))}"> <i class="icon-map-marker"></i> 粉丝管理 </a> </li>
+      <li class="bg_db"> <a href="javascript:history.go(-1);"> <i class="icon-share-alt"></i> 返回</a> </li>
+    </ul>
+  </div>
+  <h4>发送记录<span class="FAQ"></span></h4>
+ </div>
+ 
+<div class="msgWrap form">
+<ul id="tags" style="width:100%">
+		<li>
+				<a href="?g=User&m=Message&a=index">发送消息（通过群发接口）</a> 
+			</li>
+		<li>
+				<a href="?g=User&m=Message&a=index2">发送消息（通过客服接口）</a> 
+			</li>
+			<li class="selectTag">
+				<a href="?g=User&m=Message&a=sendHistory">发送记录</a> 
+			</li>
+			<li>
+				<a href="?g=User&m=Message&a=help">帮助说明</a> 
+			</li>
+						<div class="clr" style="height:1px;background:#eee;margin-bottom:20px;"></div>
+		</ul>
+</div>
+
+
+ <div class="msgWrap form">
+<div class="bdrcontent">
+<div id="div_ptype">
+<table class="ListProduct" border="0" cellSpacing="0" cellPadding="0" width="100%">
+<thead>
+<tr>
+<th style=" width:180px;">标题</th>
+<th style=" width:80px;">类型</th>
+<th style=" width:80px;">成功数量</th>               
+<th style=" width:150px;" class="norightborder">时间</th>
+<th style=" width:80px;">操作</th>    
+</tr>
+</thead>
+<volist name="info" id="actinfo">
+<tr>
+<td>{weiwin:$actinfo.title}</td>
+<td>{weiwin:$actinfo.msgtype}</td>
+<td>{weiwin:$actinfo.reachcount}</td>
+<td>
+<php>echo date('Y-m-d',$actinfo['time']);</php>
+</td>
+<td class="norightborder"><a charset="a_oper" href="{weiwin::U('Message/item',array('id'=>$actinfo['id']))}">查看</a></td>
+</volist>
+</tr>
+
+</table>
+
+</div>
+</div>
+<div class="footactions" style="padding-left:10px">
+  <div class="pages">{weiwin:$page}</div>
+</div>
+          </div>
+  
+        </div>
+   
+        <div class="clr"></div>
+      </div>
+    </div>
+  </div> 
+  <!--底部-->
+  	</div>
+
+<include file="Public:footer"/>

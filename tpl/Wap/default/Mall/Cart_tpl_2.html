@@ -1,0 +1,203 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
+<meta name="MobileOptimized" content="240" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<meta name="Keywords" content="{weiwin:$metaTitle}" />
+<meta name="description" content="{weiwin:$metaTitle}" />
+<title>{weiwin:$metaTitle}</title>
+<link href="tpl/Wap/default/common/mall/bootstrap.css" rel="stylesheet">
+<link href="tpl/Wap/default/common/mall/wsp.css" rel="stylesheet">
+<link href="tpl/Wap/default/common/mall/jquery.alerts.css" rel="stylesheet">
+<script src="{weiwin::$staticFilePath}/js/jquery.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="{weiwin::$staticFilePath}/js/main.js"></script>
+<script type="text/javascript" src="tpl/Wap/default/common/mall/jquery.cookie.js"></script>
+<script type="text/javascript" src="tpl/Wap/default/common/mall/jquery.alerts.js"></script>
+<style type="text/css">
+input[type="radio"],
+input[type="checkbox"] {
+  margin: 0px;
+}
+select {
+  width:95%;
+}
+
+input[type="text"]{
+  width:95%;
+}
+
+.text_red{
+    color:red;
+}
+</style>
+</head>
+<body>
+<style type="text/css">
+body {
+    background-image: url("tpl/Wap/default/common/mall/tpl_2/bg_body.png");
+    background-repeat: repeat;
+}
+
+.filler{
+    height: 35px;
+    width: 100%;
+}
+
+
+.fl{
+    background:url("tpl/Wap/default/common/mall/tpl_2/bg_fl.png") center no-repeat;
+    background-size:19px 15px;
+    width: 19px;
+    height: 15px;
+}
+
+.fix_top{
+position: fixed;
+   bottom: 0px;
+    z-index: 100;
+    width: 100%;
+}
+
+</style>
+<div class="fix_top" id="header">
+    <div class="wrapper">
+        <dl id="navi_main">
+            <dd>
+                <a href="{weiwin::U('Product/index',array('token'=>$_GET['token'],'wecha_id'=>$_GET['wecha_id']))}"><img alt="Icon_cart"
+                src="tpl/Wap/default/common/mall/tpl_2/qutnur_5.png" style="width: 24px;height: 24px;margin-top: 6px;" /></a>
+            </dd>
+            <dd>
+                <a href="{weiwin::U('Product/cats',array('token'=>$_GET['token'],'wecha_id'=>$_GET['wecha_id']))}"><img alt="Icon_cart"
+                src="tpl/Wap/default/common/mall/tpl_2/qutnur_2.png" style="width: 24px;height: 24px;margin-top: 6px;" /></a>
+            </dd>
+
+            <dd>
+                <a href="{weiwin::U('Product/info',array('token'=>$_GET['token'],'wecha_id'=>$_GET['wecha_id']))}"><img alt="Icon_cart"
+                src="tpl/Wap/default/common/mall/tpl_2/qutnur_3.png" style="width: 24px;height: 24px;margin-top: 6px;" /></a>
+            </dd>
+            <dd>
+                <a href="{weiwin::U('Product/my',array('token'=>$_GET['token'],'wecha_id'=>$_GET['wecha_id']))}"><img alt="Icon_cart"
+                src="tpl/Wap/default/common/mall/tpl_2/qutnur_4.png" style="width: 24px;height: 24px;margin-top: 6px;" /></a>
+            </dd>            
+        </dl>
+        <div id="cart_button">
+            <a href="{weiwin::U('Product/cart',array('token'=>$_GET['token'],'wecha_id'=>$_GET['wecha_id']))}"> <img alt="Icon_cart"
+                src="tpl/Wap/default/common/mall/tpl_2/qutnur_1.png" style="width: 24px;height: 24px;margin-top: 6px;" />
+                <span id="cartCount" class="count">{weiwin:$totalProductCount}</span>
+            </a>
+        </div>
+        
+    </div>
+</div>
+<div class="filler"></div>
+    <div style="margin-top: 10px;">
+        <div class="wrapper">
+            <div class="cont">
+                <h3 class="ttl_sub">购物车</h3>
+                <dl class="list_cart_items">
+                <volist name="products" id="p">
+                    <dd class="items">
+                        <div class="thumb">
+                            <a href="{weiwin::U('Product/product',array('token'=>$_GET['token'],'id'=>$p['id'],'wecha_id'=>$_GET['wecha_id']))}">
+                                <img src="{weiwin:$p.logourl}">
+                            </a>
+                        </div>
+                        <div class="detail">
+                            <div style="margin:0 30px 3px 0;height:40px;overflow:hidden;font-weight: bold;">
+                                <span class="item_name"><php>$Uyghur = new UyghurCharUtilities();$Uyghur->getUyPFStr($p['name']); </php></span>
+                            </div>
+                            <div class="price pull-left">
+                                <div class="base_price pull-left">￥<span id="base_price16495">{weiwin:$p.price}</span></div>
+                                <div class="count pull-left">数量:  
+                                <input type="number" min="1" lastnum="1" value="{weiwin:$p.count}" id="qty{weiwin:$p.id}" class="qty" onblur="full_update({weiwin:$p.id},{weiwin:$p.price})" class="input-mini count-input" style="height:15px;width:30px;margin-bottom:0;"/></div>
+                            </div>
+                            <div class="price pull-right">
+                                <span class="sum_price"><span class="sum_price_num" id="sum_price16495">{weiwin:$p.price*weiwin:$p.count}</span></span>
+                            </div>
+                        </div>
+                        <a href="{weiwin::U('Product/deleteCart',array('token'=>$_GET['token'],'id'=>$p['id'],'wecha_id'=>$_GET['wecha_id']))}">
+                            <div class="delete">
+                                <img width="8" height="8" alt="" src="tpl/Wap/default/common/mall/tpl_2/cart_del.gif">
+                            </div>
+                        </a>
+                        <div style="clear:both;"></div>
+                    </dd>
+                </volist>
+                </dl>
+                <div class="total">
+                    <div class="total_price pull-right">
+                        <span style="margin-right:18px;">总价格:</span>
+                        <span>￥<span id="total_price">{weiwin:$totalFee}</span></span>
+                    </div>
+                    <div style="clear:both;"></div>
+                </div>
+                <neq name="products" value="">
+                <div class="btn_proceed">
+                    <button type="submit" gaevent="imt/buy/submit"  class="btn btn-large btn-primary" onclick="location.href='{weiwin::U('Product/orderCart',array('token'=>$_GET['token'],'cartIsDining'=>$cartIsDining,'wecha_id'=>$_GET['wecha_id']))}'">立即去付款</button>
+                </div>
+                </neq>
+            </div>
+        </div>
+    </div>
+
+    <p class="btn_more">
+        <a href="{weiwin::U('Product/index',array('token'=>$_GET['token'],'wecha_id'=>$_GET['wecha_id'],'dining'=>$isDining))}">继续购物</a>
+    </p>
+    <div style="height:30px;margin: 0; padding: 10px 7px; text-align: center;">
+    </div></body>
+<script type="text/javascript">
+function full_update(rowid,price) {
+    var _this = $('#qty'+rowid);
+    var this_val = parseInt($(_this).val());
+    if (this_val < 1 || isNaN(this_val)) {
+        alert('购买数量不能小于0！');
+        $(_this).focus();
+        return false;
+    }
+    update_cart(rowid, this_val,price);
+}
+//加减
+function plus_minus(rowid, number,price) {
+    var num = parseInt($('#qty'+rowid).val());
+    num = num + parseInt(number);
+    if (num < 1) {
+        return false;
+    }
+     $('#qty'+rowid).attr('value',num);
+    update_cart(rowid, num,price);     
+}
+
+//更新
+function update_cart(rowid, num,price) {
+	$.ajax({
+		url: '{weiwin::U('Product/ajaxUpdateCart',array('token'=>$_GET['token'],'wecha_id'=>$_GET['wecha_id']))}&id='+rowid+'&count='+num+'&price='+price,
+		success: function( data ) {
+			if(data){
+				var datas=data.split('|');
+				$('#cartCount').html(datas[0]);
+				$('#total_price').html(datas[1]);
+			}
+		}
+	});
+}
+//点击
+    function add_cart(id,price,count) {
+    	$.ajax({
+    		url: "{weiwin::U('Product/addProductToCart',array('token'=>$_GET['token'],'wecha_id'=>$_GET['wecha_id']))}"+'&id='+id+'&price='+price+'&count='+count,
+    		success: function( data ) {
+    			if(data){
+    				var datas=data.split('|');
+    				$('#p_buy #all_price').html('￥'+datas[1]);
+                    $('#p_buy #all_numb').html(datas[0]); 
+    			}
+    		}
+    	});
+    }
+
+  
+</script>
+
+</html>

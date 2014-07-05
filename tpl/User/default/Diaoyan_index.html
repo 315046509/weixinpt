@@ -1,0 +1,105 @@
+<include file="Public:head"/> 
+<div class="content" style="width:98%; background:none; margin-left:15px; border:none; padding-top:30px;" >
+    <div  class="quick-actions_homepage">
+    <ul class="quick-actions">
+      <li class="bg_lb"> <a href="{weiwin::U('Lottery/index',array('token'=>$token))}"> <i class="icon-gift"></i> 大转盘 </a> </li>
+      <li class="bg_dy"> <a href="{weiwin::U('Coupon/index',array('token'=>$token))}"> <i class="icon-money"></i> 优惠券</a> </li>
+      <li class="bg_lg"> <a href="{weiwin::U('Guajiang/index',array('token'=>$token))}"> <i class="icon-cogs"></i> 刮刮卡</a> </li>
+      <li class="bg_lh"> <a href="{weiwin::U('LuckyFruit/index',array('token'=>$token))}"> <i class="icon-trophy"></i> 水果机 </a> </li>
+      <li class="bg_ly"> <a href="{weiwin::U('GoldenEgg/index',array('token'=>$token))}"> <i class="icon-trophy"></i> 砸金蛋 </a> </li>
+      <li class="bg_lo"> <a href="{weiwin::U('Wedding/index',array('token'=>$token))}"> <i class="icon-heart"></i> 微喜帖 </a> </li>
+      <li class="bg_ls"> <a href="{weiwin::U('Diaoyan/index',array('token'=>$token))}"> <i class="icon-bullhorn"></i> 微调研</a> </li>
+      <li class="bg_lr"> <a href="{weiwin::U('Vote/index',array('token'=>$token))}"> <i class="icon-bar-chart"></i> 微投票</a> </li>
+      <li class="bg_db"> <a href="javascript:history.go(-1);"> <i class="icon-share-alt"></i> 返回</a> </li>
+    </ul>
+    </div>
+<div class="cLineE">
+<h4>调研管理 ({weiwin:$page} ) </h4>
+<div class="searchbar right">
+<!-- <form method="post" action="">
+<input type="text" id="msgSearchInput" class="txt left" placeholder="输入关键词搜索" name="searchkey" value="{weiwin:$key}">
+<input type="submit" value="搜索" id="msgSearchBtn" href="" class="btnGrayS" title="搜索">
+</form> -->
+</div>
+<div class="clr"></div>
+</div>
+
+<div class="cLine">
+<div class="pageNavigator left"> <a href="{weiwin::U('Diaoyan/add',array('token'=>$token))}" title="添加" class="btn btn-primary"><img src="{weiwin::RES}/images/product/add.png" width="16" class="vm">添加</a></div>
+<div class="clr"></div>
+
+</div>
+<div class="msgWrap">
+<form method="post" action="" id="info">
+<input name="delall" type="hidden" value="">
+<input name="wxid" type="hidden" value="">
+<table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+<thead>
+<tr>
+<th width="30">ID</th>
+<th width="160">调研名称</th>
+<th width="120">关键词</th>
+<th width="260">调研时间</th>
+<th width="90">状态</th> 
+<th width="200" class="norightborder">操作</th>
+</tr>
+</thead>
+<tbody>
+<tr></tr>
+<volist name="data" id="item"> 
+	<tr>
+	<td>{weiwin:$item.id}</td>
+	<td>{weiwin:$item.title}</td>
+	<td>{weiwin:$item.keyword}</td>
+	<td>{weiwin:$item.stime} - {weiwin:$item.etime}</td>
+	
+	<?php
+		
+		$where = array(
+			'id'=> $item['id']
+		);
+		$db = M("diaoyan"); 
+		$date = $item['etime'];
+		$arr = explode('-', $date);
+		$date = mktime(0,0,0,$arr[1], $arr[2], $arr[0]);
+		$now = time();
+		if($now>=$date){
+			//'过期
+			$db-> where($where)->setField('stat',1);
+		}else{
+			$db-> where($where)->setField('stat',0);
+		}
+	
+	?>
+	<php>
+		if($item['stat']==0){
+	</php>
+		<td>进行中</td>
+	<php>
+		}elseif($item['stat']==1){
+	</php>
+		<td>已结束</td>
+	<php>
+		}
+	</php>
+	<td class="norightborder">
+		<a class="btn btn-info btn-mini" href="{weiwin::U('Diaoyan/timu',array('id'=>$item['id'],'token'=>$token))}">题目</a>&nbsp;&nbsp;
+		<a class="btn btn-primary btn-mini" href="{weiwin::U('Diaoyan/set',array('id'=>$item['id'],'token'=>$token))}">修改</a>&nbsp;&nbsp;
+		<a class="btn btn-success btn-mini" href="{weiwin::U('Diaoyan/survey',array('id'=>$item['id'],'token'=>$token))}">统计</a>&nbsp;&nbsp;
+		<a class="btn btn-danger btn-mini" href="{weiwin::U('Diaoyan/del',array('id'=>$item['id'],'token'=>$token))}">删除</a>
+	</td>
+	</tr>
+</volist>
+</tbody>
+</table>
+</form>
+
+</div>
+<div class="cLine">
+<div class="pageNavigator right">
+<div class="pages">{weiwin:$page}</div>
+</div>
+<div class="clr"></div>
+</div>
+</div>
+<include file="Public:footer"/>		

@@ -1,0 +1,122 @@
+<include file="Index:header"/>
+<link rel="stylesheet" href="{weiwin::STATICS}/kindeditor/themes/default/default.css" />
+<link rel="stylesheet" href="{weiwin::STATICS}/kindeditor/plugins/code/prettify.css" />
+<script src="{weiwin::STATICS}/kindeditor/kindeditor.js" type="text/javascript"></script>
+<script src="{weiwin::STATICS}/kindeditor/lang/zh_CN.js" type="text/javascript"></script>
+<script src="{weiwin::STATICS}/kindeditor/plugins/code/prettify.js" type="text/javascript"></script>
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script>
+	KindEditor.ready(function(K){
+		var editor = K.editor({
+			allowFileManager:true
+		});
+		K('#upload').click(function() {
+			editor.loadPlugin('image', function() {
+				editor.plugin.imageDialog({
+					fileUrl : K('#pic').val(),
+					clickFn : function(url, title) {
+						if(url.indexOf("http") > -1){
+							K('#pic').val(url);
+						}else{
+							K('#pic').val("{weiwin::C('site_url')}"+url);
+						}
+						editor.hideDialog();
+					}
+				});
+			});
+		});
+	});
+</script>
+<div class="content" style="width:95%; background:none; margin-left:25px; border:none; margin-bottom:30px; margin-top:20px;" >
+          <div class="cLineB"><h4>添加微信公众号</h4></div>
+          <form method="post" action="{weiwin::U('User/Index/upsave')}" enctype="multipart/form-data">
+          <input type="hidden" name="id" value="{weiwin:$info.id}">
+          <div class="msgWrap">
+            <table class="userinfoArea" border="0" cellspacing="0" cellpadding="0" width="100%">
+              <thead>
+                <tr>
+                  <th><span class="red">*</span>公众号名称：</th>
+                  <td><input type="text" required="" class="px" name="wxname" value="{weiwin:$info.wxname}" tabindex="1" size="25">
+                  </td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th><span class="red">*</span>微信公众号原始id：</th>
+                  <td><input type="text" required="" name="wxid" value="{weiwin:$info.wxid}" onmouseup="this.value=this.value.replace('_430','')" class="px" tabindex="1" size="25">　<span class="red">请认真填写，错了不能修改。</span>比如：gh_423dwjkeww3 <a href="/tpl/static/getoid.htm" target="_blank"><img src="{weiwin::RES}/images/help.png" class="vm helpimg" title="帮助"></a></td>
+                </tr>
+                 <tr>
+                  <th><span class="red">*</span>易信公众号原始id：</th>
+                  <td><input type="text" required="" name="yxid" value="{weiwin:$info.yxid}" onmouseup="this.value=this.value.replace('_430','')" class="px" tabindex="1" size="25">　<span class="red">非必填项！没有易信号可随便输入</span></td>
+                </tr>
+                <tr>
+                  <th><span class="red">*</span>微信号：</th>
+                  <td><input type="text" required="" name="weixin" value="{weiwin:$info.weixin}" class="px" tabindex="1" size="25">　比如：weixin </td>
+                </tr>
+                  <tr>
+                  <th>头像地址（url）:</th>
+                  <td><input class="px" name="headerpic" id="pic" value="{weiwin:$info.headerpic}" size="60">  <span class="ke-button-common" id="upload" style="margin-top: 0px;margin-left: 5px;"><input type="button" class="ke-button-common ke-button" value="上传图片"></span></td>
+                </tr>
+                 
+                 <input type="hidden" name="token" value="{weiwin:$info.token}" class="px" tabindex="1" size="40">
+                <tr>
+                  <th><span class="red"></span>AppID：</th>
+                  <td><input type="text" name="appid" value="{weiwin:$info.appid}" class="px" tabindex="1" size="25">　高级认证服务号特权功能，微客服、粉丝管理等系统，可以不填 </td>
+                </tr>
+                <tr>
+                  <th><span class="red"></span>AppSecret：</th>
+                  <td><input type="text" name="appsecret" value="{weiwin:$info.appsecret}" class="px" tabindex="1" size="25">　高级认证服务号特权功能，微客服、粉丝管理等系统，可以不填 </td>
+                </tr>
+                
+                <tr>
+                  <th><span class="red"></span>微信号类型：</th>
+                  <td><select id="winxintype" name="winxintype">                  
+                  <option value="1" <eq name="info.winxintype" value="1">selected</eq>>订阅号</option>
+                  <option value="2" <eq name="info.winxintype" value="2">selected</eq>>服务号</option>
+                  <option value="3" <eq name="info.winxintype" value="3">selected</eq>>高级服务号</option>
+                  </select>　高级服务号是指每年向微信官方交300元认证费的公众号 </td>
+                </tr>
+                <tr>
+                  <th><span class="red">*</span>地区</th>
+                  <td>
+                  省：<input type="text" class="px" id="province" value="{weiwin:$info.province}" name="province" tabindex="1" size="20">  市：<input id="city" value="{weiwin:$info.city}" type="text" name="city" class="px" tabindex="1" size="20">
+               （此处关联公交等本地化查询）
+                  </td>
+                </tr>
+                 <tr>
+                  <th>粉丝数：</th>
+                  <td><input type="text" required="" name="wxfans" value="{weiwin:$info.wxfans}" class="px" tabindex="1" size="25"></td>
+                </tr>
+             
+                <tr>
+                  <th>类型：</th>
+                  <td><select id="type" name="type">
+                  <option value="1,情感" <eq name="info.typeid" value="1">selected</eq> >情感</option>
+                  <option value="2,数码" <eq name="info.typeid" value="2">selected</eq> >数码</option>
+                  <option value="3,娱乐" <eq name="info.typeid" value="3">selected</eq> >娱乐</option>
+                  <option value="4,IT" <eq name="info.typeid" value="4">selected</eq> >IT</option>
+                  <option value="5,数码" <eq name="info.typeid" value="5">selected</eq> >数码</option>
+                  <option value="6,购物" <eq name="info.typeid" value="6">selected</eq> >购物</option>
+                  <option value="7,生活" <eq name="info.typeid" value="7">selected</eq> >生活</option>
+                  <option value="8,服务" <eq name="info.typeid" value="8">selected</eq> >服务</option>
+                  </select></td>
+                </tr>
+              
+                <tr>
+                  <th></th>
+                  <td><button type="submit" class="btn btn-success" id="saveSetting">保存</button></td>
+                </tr>
+              </tbody>
+            </table>
+            
+          </div>
+          </form>
+        </div>
+        
+        <div class="clr"></div>
+      </div>
+    </div>
+  </div>
+  <!--底部-->
+  	</div>
+<include file="Public:footer"/>	

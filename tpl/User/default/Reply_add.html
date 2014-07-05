@@ -1,0 +1,54 @@
+<include file="Public:head" /> 
+<link rel="stylesheet" type="text/css" href="{weiwin::RES}/css/cymain.css" />
+<script src="{weiwin::RES}/js/date/WdatePicker.js"></script>
+<script type="text/javascript" src="{weiwin::RES}/js/formCheck/formcheck.js"> </script>
+
+<div class="content" style="width:95%; background:none; margin-left:25px; border:none; margin-bottom:30px; margin-top:30px;" >
+  <div class="cLineB">
+    <div  class="quick-actions_homepage">
+    <ul class="quick-actions">
+      <li class="bg_lb"> <a href="{weiwin::U('Taobao/index',array('token'=>$token))}"> <i class="icon-bullhorn"></i> 淘宝天猫 </a> </li>
+      <li class="bg_dy"> <a href="{weiwin::U('Api/index',array('token'=>$token))}"> <i class="icon-resize-full"></i> 第三方</a> </li>
+      <li class="bg_lg"> <a href="{weiwin::U('Reply/index',array('token'=>$token))}"> <i class="icon-book"></i> 留言板</a> </li>
+      <li class="bg_ly"> <a href="{weiwin::U('Greeting_card/index',array('token'=>$token))}"> <i class="icon-envelope"></i> 微贺卡 </a> </li>
+      <li class="bg_lo"> <a href="{weiwin::U('Shake/index',array('token'=>$token))}"> <i class="icon-bolt"></i> 摇一摇 </a> </li>
+      <li class="bg_ls"> <a href="{weiwin::U('Wall/index',array('token'=>$token))}"> <i class="icon-reorder"></i> 微信墙</a> </li>
+      <li class="bg_lr"> <a href="{weiwin::U('Kefu/index',array('token'=>$token))}"> <i class="icon-question-sign"></i> 智能客服</a> </li>
+      <li class="bg_db"> <a href="javascript:history.go(-1);"> <i class="icon-share-alt"></i> 返回</a> </li>
+    </ul>
+  </div>
+    <h4>添加回复</h4> 
+    <a href="{weiwin::U('Reply/index',array('token'=>$token,'wecha_id'=>$wecha_id))}" class="right  btnGreen" style="margin-top:-27px">返回</a> 
+   </div> 
+   
+
+   <form class="form" method="post" id="form" action="{weiwin::U('User/Reply/insert',array('token'=>$token,'wecha_id'=>$wecha_id))}"> 
+<!--<if condition="$isUpdate eq 1">
+<input type="hidden" name="id" value="{weiwin:$set.id}" />
+</if>-->
+<!--<input type="hidden" name="discount" id="discount" value="{weiwin:$set.discount}" />-->
+<input type="hidden" name="wecha_id"  value="{weiwin:$wecha_id}" />
+<input type="hidden" name="checked"  value="{weiwin:$checked}" />
+<input type="hidden" name="chk"  value="{weiwin:$chk_value}" />
+    <div class="msgWrap bgfc"> 
+     <table class="userinfoArea" style=" margin:0;" border="0" cellspacing="0" cellpadding="0" width="100%"> 
+      <tbody> 
+      
+        <TR>
+                  <TH valign="top"><label for="info">图文详细页内容：</label></TH>
+                  <TD><textarea name="content" id="content"  rows="5" style="width:590px;height:360px"></textarea></TD>
+                </TR>  
+       <tr>         
+       <th>&nbsp;</th>
+       <td>
+      <input type="hidden" name="groupon" value="1" />
+       <button type="submit" name="button" class="btnGreen">保存</button> &nbsp; <a href="{weiwin::U('Reply/index',array('token'=>$token,'wecha_id'=>$wecha_id))}" class="btnGray vm">取消</a></td> 
+       </tr> 
+      </tbody> 
+     </table> 
+     </div>
+    
+   </form> 
+  </div> 
+
+  <include file="Public:footer" />

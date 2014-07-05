@@ -1,0 +1,64 @@
+<include file="Public:head"/>  
+<div class="content" style="width:95%; background:none; margin-left:25px; border:none; margin-bottom:30px; margin-top:30px;" >
+  <div class="cLine">
+  <div  class="quick-actions_homepage">
+    <ul class="quick-actions">
+      <li class="bg_lb"> <a href="/index.php?g=User&m=Member_card&a=design&token={weiwin:$token}&id={weiwin:$thisCard.id}"> <i class="icon-cog"></i> 卡片设置 </a> </li>
+      <li class="bg_dy"> <a href="/index.php?g=User&m=Member_card&a=create&token={weiwin:$token}&id={weiwin:$thisCard.id}"> <i class="icon-dashboard"></i> 在线开卡</a> </li>
+      <li class="bg_lg"> <a href="/index.php?g=User&m=Member_card&a=exchange&token={weiwin:$token}&id={weiwin:$thisCard.id}"> <i class="icon-cogs"></i> 积分设置</a> </li>
+      <li class="bg_ly"> <a href="/index.php?g=User&m=Member_card&a=notice&token={weiwin:$token}&id={weiwin:$thisCard.id}"> <i class="icon-book"></i> 设置通知 </a> </li>
+      <li class="bg_lo"> <a href="/index.php?g=User&m=Member_card&a=privilege&token={weiwin:$token}&id={weiwin:$thisCard.id}"> <i class="icon-camera-retro"></i> 会员特权 </a> </li>
+      <li class="bg_ls"> <a href="/index.php?g=User&m=Member_card&a=coupon&token={weiwin:$token}&id={weiwin:$thisCard.id}"> <i class="icon-picture"></i> 优惠券</a> </li>
+      <li class="bg_lr"> <a href="/index.php?g=User&m=Member_card&a=integral&token={weiwin:$token}&id={weiwin:$thisCard.id}"> <i class="icon-magic"></i> 礼品券</a> </li>
+      <li class="bg_lv"> <a href="/index.php?g=User&m=Member_card&a=members&token={weiwin:$token}&id={weiwin:$thisCard.id}"> <i class="icon-eye-open"></i> 会员管理</a> </li>
+      <li class="bg_lh"> <a href="/index.php?g=User&m=Member_card&a=staff&token={weiwin:$token}&id={weiwin:$thisCard.id}"> <i class="icon-globe"></i> 管理员设置</a> </li>
+    </ul>
+  </div>
+              <h4 class="left">职员管理</h4>
+              <div class="clr"></div>
+          </div>
+          <div class="cLine">
+			<div class="pageNavigator left">
+			<a href="{weiwin::U('Member_card/staffSet',array('token'=>$token,'id'=>$thisCard['id']))}" title="" class="btnGrayS vm bigbtn">添加</a>　
+			</div>
+			<a href="javascript:history.go(-1);" class="right btn btn-info" style="margin-top:10px">返回</a>          
+			<div class="clr"></div>
+          </div>
+          <div class="msgWrap">
+          <form method="post" action="index.php?ac=importtxt&amp;id=9878&amp;wxid=gh_423dwjkewad" id="info">
+          <input name="delall" type="hidden" value="del">
+           <input name="wxid" type="hidden" value="gh_423dwjkewad">
+            <table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+              <thead>
+                <tr>
+                <th width="200">所属店铺</th>
+					<th width="90">姓名</th>
+					<th width="100">电话</th>
+					<th width="130">添加时间</th>
+					<th class="edit norightborder">操作</th>
+                </tr>
+              </thead>
+              <tbody>
+                <volist name="staffs" id="staff">           
+                <tr>
+					  <td>{weiwin:$staff.companyName}</td>
+					 <td>{weiwin:$staff.name}</td>
+					  <td>{weiwin:$staff.tel}</td>
+					  <td>{weiwin:$staff.time|date='Y-m-d',###}</td>
+					  <td class="norightborder">
+						<a href="{weiwin::U('Member_card/staffSet',array('itemid'=>$staff['id'],'id'=>$thisCard['id']))}">编辑</a> <a href="{weiwin::U('Member_card/staffDelete',array('itemid'=>$staff['id'],'id'=>$thisCard['id']))}">删除</a>
+					  </td>
+                </tr>
+				</volist>
+              </tbody>
+            </table>
+           </form> 
+          </div>
+          <div class="cLine">
+            <div class="pageNavigator right">
+                 <div class="pages"></div>
+             </div>
+            <div class="clr"></div>
+          </div>
+        </div>
+<include file="Public:footer"/>   

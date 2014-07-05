@@ -1,0 +1,190 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="initial-scale=1, user-scalable=no">
+<meta content="{weiwin::C('keyword')}" name="Keywords">
+<meta content="{weiwin::C('content')}" name="Description">
+<title>{weiwin::C('site_name')}-微信公众平台互动营销专家</title>
+<link rel="stylesheet" type="text/css" href="{weiwin::RES}/css/base.css"/>
+<link rel="stylesheet" type="text/css" href="{weiwin::RES}/css/auth.css"/>
+<script type="text/javascript" src="{weiwin::RES}/js/jQuery.js"></script>
+<script type="text/javascript" src="{weiwin::RES}/js/sea.js"></script>
+</head>
+<include file="Public:header"/>
+
+<div class="wPage">
+
+	<div class="content-area">
+
+    	<div class="content-box">
+
+        	<div class="con-hd">
+
+            	我们的案例
+
+            </div>
+
+            <div class="con-bd">
+
+            	<div class="works-item">
+
+                	<h2>电视媒体</h2>
+
+                    <ul>
+
+                    	<li>
+
+                        	<div class="m">
+
+                        		<img src="{weiwin::RES}/images/dianshi1.jpg">
+
+                            </div>
+
+                        </li>
+
+                        <li>
+
+                        	<div class="m">
+
+                        	<img src="{weiwin::RES}/images/dianshi2.jpg">
+
+                            </div>
+
+                        </li>
+
+                        <li>
+
+                        	<div class="m">
+
+                        	<img src="{weiwin::RES}/images/dianshi3.jpg">
+
+                            </div>
+
+                        </li>
+
+                    </ul>
+
+                </div>
+
+                <div class="works-item">
+
+                	<h2>汽车服务</h2>
+
+                    <ul>
+
+                    	<li>
+
+                        	<div class="m">
+
+                        	<img src="{weiwin::RES}/images/thumb_loseit.jpg">
+
+                            </div>
+
+                        </li>
+
+                        <li>
+
+                        	<div class="m">
+
+                        	<img src="{weiwin::RES}/images/thumb_loseit.jpg">
+
+                            </div>
+
+                        </li>
+
+                        <li>
+
+                        	<div class="m">
+
+                        	<img src="{weiwin::RES}/images/thumb_loseit.jpg">
+
+                            </div>
+
+                        </li>
+
+                    </ul>
+
+                </div>
+
+                <div class="works-item">
+
+                	<h2>汽车服务</h2>
+
+                    <ul>
+
+                    	<li>
+
+                        	<div class="m">
+
+                        	<img src="{weiwin::RES}/images/thumb_loseit.jpg">
+
+                            </div>
+
+                        </li>
+
+                        <li>
+
+                        	<div class="m">
+
+                        	<img src="{weiwin::RES}/images/thumb_loseit.jpg">
+
+                            </div>
+
+                        </li>
+
+                        <li>
+
+                        	<div class="m">
+
+                        	<img src="{weiwin::RES}/images/thumb_loseit.jpg">
+
+                            </div>
+
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script type="text/javascript">
+
+$("#ui-navigation li").on("click",function(){
+
+	$("#ui-navigation li").removeClass("selected");
+
+	$(this).addClass("selected");
+
+	var url = $(this).attr("data-url");
+
+	ajaxhtml(url);
+
+})
+
+function ajaxhtml(url){
+
+	$.get(url,{},function(t){	$("#service-con").html(t)},"html");	
+
+}
+
+ajaxhtml($("#ui-navigation li:eq(0)").attr("data-url"));
+
+</script>
+
+<!--[if !IE]>底部<![endif]-->
+
+<include file="Public:footer"/>
+
+<!--[if !IE]>底部<![endif]-->
+
+</body>
+
+</html>

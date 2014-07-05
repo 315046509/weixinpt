@@ -1,0 +1,182 @@
+<include file="Public:head"/>
+<script type="text/javascript" charset="utf-8" src="./tpl/static/ueditor/ueditor.config.js"></script>
+<script type="text/javascript" charset="utf-8" src="./tpl/static/ueditor/ueditor.all.min.js"> </script>
+<script type="text/javascript" charset="utf-8" src="./tpl/static/ueditor/lang/zh-cn/zh-cn.js"></script>
+<link rel="stylesheet" type="text/css" href="{weiwin::RES}/default_user_com.css" media="all">
+<script src="{weiwin::STATICS}/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="{weiwin::STATICS}/artDialog/plugins/iframeTools.js"></script>
+<div class="content" style="width:95%; background:none; margin-left:25px; border:none; margin-bottom:30px; margin-top:10px;" >
+<include file="Public:hangye"/>
+  <h4>添加品牌</h4>
+  <include file="Car:menu"/>
+  <a href="javascript:history.go(-1);return false;" class="right btnGrayS vm" style="margin-top:-27px">返回</a>
+ </div>
+         
+    <div class="msgWrap bgfc">
+      <form class="form" method="post" action="" target="_top" >     
+        <table class="userinfoArea" style=" margin:0;" border="0" cellspacing="0" cellpadding="0" width="100%">
+            <tbody>
+                <tr>
+                  <th valign="top"><span class="red">*</span>品牌名称：</th>
+                  <td>
+                     <input type="text" name="name" id="name" class="input-medium px" style="width:200px"  value="{weiwin:$brand['name']}"/>
+                                        <span class="maroon">*</span>
+                                        <span class="help-inline">尽量简单，不要超过20字</span></td>
+                </tr>
+                <tr>
+                    <th width="120">官方网站：</th>
+                    <td>   <input type="text" name="www" id="www" class="input-xlarge px" style="width:200px"  placeholder="必须(http://|https://)开头" data-rule-url="true" value="{weiwin:$brand['www']}"/> <span class="help-inline">请输入品牌官方网站的完成url地址,如：http://www.bmw.com.cn/</span></td>
+                </tr>
+                <tr>
+                    <th>LOGO:</th>
+                    <td>
+                           <img class="thumb_img" id="clogo_src" src="{weiwin:$brand['clogo']|default='./tpl/User/default/common/car/car_logo.png'}" style="max-height: 100px;" />
+                                        <input type="text" class="px" id="clogo"  name="clogo"  value="{weiwin:$brand['clogo']|default='./tpl/User/default/common/car/car_logo.png'}"/>
+                                         <span class="help-inline">
+                                            <script src="{weiwin::STATICS}/upyun.js"></script><a href="###" onclick="upyunPicUpload('clogo',420,60,'{weiwin:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('clogo')">预览</a>
+                                        </span>
+                                        <span class="help-inline">建议图片尺寸420*60，不超过300K</span>
+                    </td>
+                </tr>
+                <tr>
+                    <th width="120">显示顺序：</th>
+                    <td>   
+                         <input type="text" id="sort" name="sort" value="{weiwin:$brand['sort']|default=1}" class="input-mini px" data-rule-required="true" data-rule-number="true" /><span class="maroon">*</span>
+                                        <span class="help-inline">数字越大越靠前</span>
+                    </td>
+                </tr>
+
+                 <tr>
+                    <th width="120">品牌简介:</th>
+                    <td>
+                    <script id="editor" name="info" type="text/plain" style="width:605px;height:120px;">{weiwin:$brand.info}</script>
+                    </td>
+                </tr>
+
+                    <td>
+                        <button type="submit" name="button" class="btn btn-success">保存</button>
+                        <a href="javascript:history.go(-1);" class="btn btn-danger">取消</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+  </div> 
+ 
+  
+        </div>
+<script type="text/javascript">
+
+    //实例化编辑器
+    //建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
+    UE.getEditor('editor');
+
+
+    function isFocus(e){
+        alert(UE.getEditor('editor').isFocus());
+        UE.dom.domUtils.preventDefault(e)
+    }
+    function setblur(e){
+        UE.getEditor('editor').blur();
+        UE.dom.domUtils.preventDefault(e)
+    }
+    function insertHtml() {
+        var value = prompt('插入html代码', '');
+        UE.getEditor('editor').execCommand('insertHtml', value)
+    }
+    function createEditor() {
+        enableBtn();
+        UE.getEditor('editor');
+    }
+    function getAllHtml() {
+        alert(UE.getEditor('editor').getAllHtml())
+    }
+    function getContent() {
+        var arr = [];
+        arr.push("使用editor.getContent()方法可以获得编辑器的内容");
+        arr.push("内容为：");
+        arr.push(UE.getEditor('editor').getContent());
+        alert(arr.join("\n"));
+    }
+    function getPlainTxt() {
+        var arr = [];
+        arr.push("使用editor.getPlainTxt()方法可以获得编辑器的带格式的纯文本内容");
+        arr.push("内容为：");
+        arr.push(UE.getEditor('editor').getPlainTxt());
+        alert(arr.join('\n'))
+    }
+    function setContent(isAppendTo) {
+        var arr = [];
+        arr.push("使用editor.setContent('欢迎使用ueditor')方法可以设置编辑器的内容");
+        UE.getEditor('editor').setContent('欢迎使用ueditor', isAppendTo);
+        alert(arr.join("\n"));
+    }
+    function setDisabled() {
+        UE.getEditor('editor').setDisabled('fullscreen');
+        disableBtn("enable");
+    }
+
+    function setEnabled() {
+        UE.getEditor('editor').setEnabled();
+        enableBtn();
+    }
+
+    function getText() {
+        //当你点击按钮时编辑区域已经失去了焦点，如果直接用getText将不会得到内容，所以要在选回来，然后取得内容
+        var range = UE.getEditor('editor').selection.getRange();
+        range.select();
+        var txt = UE.getEditor('editor').selection.getText();
+        alert(txt)
+    }
+
+    function getContentTxt() {
+        var arr = [];
+        arr.push("使用editor.getContentTxt()方法可以获得编辑器的纯文本内容");
+        arr.push("编辑器的纯文本内容为：");
+        arr.push(UE.getEditor('editor').getContentTxt());
+        alert(arr.join("\n"));
+    }
+    function hasContent() {
+        var arr = [];
+        arr.push("使用editor.hasContents()方法判断编辑器里是否有内容");
+        arr.push("判断结果为：");
+        arr.push(UE.getEditor('editor').hasContents());
+        alert(arr.join("\n"));
+    }
+    function setFocus() {
+        UE.getEditor('editor').focus();
+    }
+    function deleteEditor() {
+        disableBtn();
+        UE.getEditor('editor').destroy();
+    }
+    function disableBtn(str) {
+        var div = document.getElementById('btns');
+        var btns = domUtils.getElementsByTagName(div, "button");
+        for (var i = 0, btn; btn = btns[i++];) {
+            if (btn.id == str) {
+                domUtils.removeAttributes(btn, ["disabled"]);
+            } else {
+                btn.setAttribute("disabled", "true");
+            }
+        }
+    }
+    function enableBtn() {
+        var div = document.getElementById('btns');
+        var btns = domUtils.getElementsByTagName(div, "button");
+        for (var i = 0, btn; btn = btns[i++];) {
+            domUtils.removeAttributes(btn, ["disabled"]);
+        }
+    }
+
+    function getLocalData () {
+        alert(UE.getEditor('editor').execCommand( "getlocaldata" ));
+    }
+
+    function clearLocalData () {
+        UE.getEditor('editor').execCommand( "clearlocaldata" );
+        alert("已清空草稿箱")
+    }
+
+</script>
+<include file="Public:footer"/>

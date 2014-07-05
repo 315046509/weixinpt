@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>权限管理</title>
+<include file="common:public" />
+<div class="cr"></div>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" id="alist">
+	  <tr>
+		 <tr>
+					<th class="select">选择</th>
+					<th class="">名称</th>
+					<th class="">MAC</th>
+					<th class="">IP</th>
+					<th class="">位置</th>
+					<th class="">在线人数</th>
+					<th class="">3G网站</th>
+
+					<th class="">时间</th>
+					<th class="">状态</th>
+                    <th class="">管理操作</td>
+	  </tr>
+	    <volist name="list" id="o">
+                <tr>
+                  <td>  <input type="checkbox" name="del_id[]" value="{weiwin:$o.id}" class="checkitem"></td>
+                  <td>{weiwin:$o.name}</td>
+                  <td>{weiwin:$o.mac}</td>
+                   <td>{weiwin:$o.addr}</td>
+					 <td>{weiwin:$o.device_location}</td>
+					<td>{weiwin:$o.usernum}</td>
+					<td>{weiwin:$o.token}</td>
+                    <td>{weiwin:$o.addtime}</td>
+                    <td><if condition="$o['deploy_status'] eq 1">已连通<else/>未连通</if></td>
+                    <td><a href="javascript:void(0)" onclick="return confirmurl('{weiwin::U('Ap/del/',array('id'=>$vo['id']))}','确定删除该用户吗?')">删除</a></td>
+                
+				</tr>
+				</volist>
+     <tr bgcolor="#FFFFFF"> 
+	 
+      <td colspan="9"><div class="listpage">{weiwin:$page}</div></td>
+     
+    </tr>
+   
+</table>
+
+
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>授权成功</title>
+	<script type="text/javascript" src="/tpl/Wap/default/common/src/jQuery.js"></script>
+	
+</head>
+<body>
+<script type="text/javascript">
+<if condition="$ok eq 1">
+login('{weiwin::$token}');
+<else/>
+alert('授权失败');
+</if>
+// 此函数为和路由器交互的函数
+function login (token)
+{
+
+	$.ajax({
+	async:false,
+	type:"POST",
+	url:"http://{weiwin:$Think.session.gwaddr}/api/login.cgi",
+	//url:'http://1.1.1.1/api/webauth',                            
+	dataType: 'jsonp',
+	jsonp: 'jsonpcallback',  
+	data: { "token": token },		    
+	timeout: 1000,
+
+	success:function(msg)				    
+	{ 
+		if (msg.ret > 0)
+		{
+			alert("认证成功!");
+			window.location = "{weiwin::C('jumpurl')}";
+			
+		}else {
+			alert("认证失败!");
+		}
+	},
+
+	error:function()
+	{	
+		alert("与服务器通讯失败!");
+	}
+	});
+
+
+}
+</script>
+</body>
+</html>

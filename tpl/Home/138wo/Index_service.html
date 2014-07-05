@@ -1,0 +1,106 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="initial-scale=1, user-scalable=no">
+<meta content="{weiwin::C('keyword')}" name="Keywords">
+<meta content="{weiwin::C('content')}" name="Description">
+<title>{weiwin::C('site_name')}-微信公众平台互动营销专家</title>
+<link rel="stylesheet" type="text/css" href="{weiwin::RES}/css/base.css"/>
+<link rel="stylesheet" type="text/css" href="{weiwin::RES}/css/auth.css"/>
+<script type="text/javascript" src="{weiwin::RES}/js/jQuery.js"></script>
+<script type="text/javascript" src="{weiwin::RES}/js/sea.js"></script>
+</head>
+<include file="Public:header"/>
+<div class="wPage">
+	<div class="content-area">
+    	<div class="content-box">
+        	<div class="con-hd">
+            	功能简介
+            </div>
+            <div class="con-bd" style="padding:0px;">
+            	<div class="servicebox">
+                	<div class="serviceLeft">
+                    	<ul class="ui-navigation" id="ui-navigation">
+                        	<li class="selected" data-url="{weiwin::RES}/Index/APPGuanwang.html">
+                                <h2 class="expansion-0">微官网</h2>
+                            </li>
+                            <li  data-url="{weiwin::RES}/Index/APPvipshop.html">
+                                <h2 class="expansion-1">微商城</h2>
+                            </li>
+                            <li  data-url="{weiwin::RES}/Index/APPmeiye.html">
+                                <h2 class="expansion-2">微美业</h2>
+                            </li>
+                            <li  data-url="{weiwin::RES}/Index/APPdiancai.html">
+                                <h2 class="expansion-3">微餐饮</h2>
+                            </li>
+                            <li  data-url="{weiwin::RES}/Index/APPhotel.html">
+                                <h2 class="expansion-4">微酒店</h2>
+                            </li>
+                             <li  data-url="{weiwin::RES}/Index/APPcar.html">
+                                <h2 class="expansion-1">微汽车</h2>
+                            </li>
+                             <li  data-url="{weiwin::RES}/Index/APPfang.html">
+                                <h2 class="expansion-2">微房产</h2>
+                            </li>
+                             <li  data-url="{weiwin::RES}/Index/APPvipcard.html">
+                                <h2 class="expansion-4">微会员</h2>
+                                </li>
+                             <li  data-url="{weiwin::RES}/Index/APPfuwu.html">
+                                <h2 class="expansion-3">微服务</h2>
+                                </li>
+                             <li  data-url="{weiwin::RES}/Index/APPshenghuo.html">
+                                <h2 class="expansion-2">微生活</h2>
+                                </li>
+                             <li  data-url="{weiwin::RES}/Index/APPyuyue.html">
+                                <h2 class="expansion-1">微预约</h2>
+                                </li>
+                             <li  data-url="{weiwin::RES}/Index/APPkefu.html">
+                                <h2 class="expansion-4">微客服</h2>
+                                </li>
+                             <li  data-url="{weiwin::RES}/Index/APPqiang.html">
+                                <h2 class="expansion-0">微信墙</h2>
+                                 </li>
+                             <li  data-url="{weiwin::RES}/Index/APPphoto.html">
+                                <h2 class="expansion-2">微相册</h2>
+                                </li>
+                             <li  data-url="{weiwin::RES}/Index/APPWcard.html">
+                                <h2 class="expansion-1">微喜帖</h2>
+                                </li>
+                            <li  data-url="{weiwin::RES}/Index/APPyiliao.html">
+                                <h2 class="expansion-2">微医疗</h2>
+                                </li>
+                            <li  data-url="{weiwin::RES}/Index/APPwall.html">
+                                <h2 class="expansion-3">微信墙</h2>
+                                </li>
+                            <li  data-url="{weiwin::RES}/Index/APPtuan.html">
+                                <h2 class="expansion-4">微团购</h2>
+                        </ul>
+                    </div>
+                    <div class="serviceRight">
+                    	<div class="service-con" id="service-con">
+                       		加载中
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+$("#ui-navigation li").on("click",function(){
+	$("#ui-navigation li").removeClass("selected");
+	$(this).addClass("selected");
+	var url = $(this).attr("data-url");
+	ajaxhtml(url);
+})
+function ajaxhtml(url){
+	$.get(url,{},function(t){	$("#service-con").html(t)},"html");	
+}
+ajaxhtml($("#ui-navigation li:eq(0)").attr("data-url"));
+</script>
+<!--[if !IE]>底部<![endif]-->
+<include file="Public:footer"/>
+<!--[if !IE]>底部<![endif]-->
+</body>
+</html>

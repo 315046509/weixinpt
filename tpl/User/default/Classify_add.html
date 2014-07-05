@@ -1,0 +1,243 @@
+<include file="Public:head"/>
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+<link rel="stylesheet" type="text/css" href="./tpl/User/default/common/weimeng-js/css/bootstrap_min.css" media="all" />
+<link rel="stylesheet" type="text/css" href="./tpl/User/default/common/weimeng-js/css/resource.css" media="all" />
+
+<script type="text/javascript" src="./tpl/User/default/common/weimeng-js/bootstrap_min.js"></script>
+<script type="text/javascript" src="./tpl/User/default/common/weimeng-js/resource.js"></script>
+<script type="text/javascript" src="./tpl/User/default/common/weimeng-js/inside.js"></script>
+<script src="./tpl/User/default/common/js/cart/jscolor.js" type="text/javascript"></script>
+<div class="content" style="width:95%; background:none; margin-left:25px; border:none; margin-bottom:30px; margin-top:30px;" >
+  <div class="cLineB">
+<include file="Public:3g"/>
+  </div>
+<h4>添加文章分类</h4><a href="javascript:history.go(-1);"  class="right btn btn-info" style="margin-top:-27px" >返回</a></div> 
+<div class="msgWrap">
+  <form class="form" method="post"   action="{weiwin::U('Classify/insert')}"  target="_top" enctype="multipart/form-data" >
+<TABLE class="userinfoArea" style=" margin:20px 0 0 0;" border="0" cellSpacing="0" cellPadding="0" width="100%">
+  <THEAD>
+  <if condition="$fid neq 0">
+  <TR>
+  <TH valign="top"><label for="keyword">上级分类名称：</label></TH>
+  <TD>{weiwin:$thisClassify.name}<input type="hidden" name="fid" value="{weiwin:$fid}" /></TD>
+  <TD>&nbsp;</TD>
+</TR>
+</if>
+<TR>
+  <TH valign="top"><label for="keyword">分类名称：</label></TH>
+  <TD><input type="input" class="px" id="keyword" value="" name="name" style="width:500px" ><br />
+                  </TD>
+  <TD>&nbsp;</TD>
+</TR>
+                            </THEAD>
+  <TBODY>
+<TR>
+  <TH valign="top"><label for="keyword">分类描述：</label></TH>
+  <TD><input type="input" class="px" id="keyword" value="" name="info" style="width:500px" ><br />
+                  30个字简短分类描述，可为空   </TD>
+  <TD>&nbsp;</TD>
+</TR>
+<TR>
+<TH valign="top"><label for="keyword">网站图标选择 ：</label></TH>
+                                     <TD>   <div class="i-cont tile-themed btn btn-success">
+                                                                                        <i class="{weiwin:$info.icon}" id="icon_i"></i>
+                                            <input type="hidden" id="icon" name="icon" value="{weiwin:$info.icon}" />
+                                            <a class="sel-icon" href="javascript:void(0);">选一个</a>
+                                            <div class="icons-cont">
+												<div class="tab-content">
+													<ul class="nav nav-tabs">
+														<li class="active"><a href="#ico_hot" data-toggle="tab">热门</a></li>
+														<li class=""><a href="#ico_all" data-toggle="tab">全部</a></li>
+													</ul>
+													<div class="tab-pane fade active in" id="ico_hot">
+													</div>
+													<div class="tab-pane fade" id="ico_all">
+													</div>
+												</div>
+											</div>
+                                    </div>该图标用于二级页面右上角的缩略菜单和部分模板的首页主菜单</TD>
+									  <TD>&nbsp;</TD>
+</TR>
+<TR>
+  <TH valign="top"><label for="keyword">分类图片：</label></TH>
+  <TD><input type="input" class="px" id="img" value="" name="img" id="img" style="width:500px" >  <script src="/tpl/static/upyun.js?2013"></script><a href="###" onclick="chooseFile('img','icon')" class="ChooseImage">选择</a> <a href="###" onclick="upyunPicUpload('img',700,420,'{weiwin:$token}')" class="ChooseImage">上传</a> <a href="###" onclick="viewImg('img')" class="ChooseImage">预览</a></TD>
+  <TD>&nbsp;</TD>
+</TR>
+
+<tr>
+<TH valign="top"><label for="keyword">按钮背景颜色选择：</label></TH>
+<td><input type="text" name="yanse" id="themeStyle" value="{weiwin:$info.yanse}" class="px color" style="width: 55px; background-image: none; background-color:{weiwin:$info.yanse}; color: rgb(255, 255, 255);" onblur="document.getElementById('yanse').style.backgroundColor=document.getElementById('themeStyle').value;">部分模板需要改变按钮背景的颜色，请根据模板需要进行填写！</td>
+</tr>
+
+<TR>
+  <TH valign="top"><label for="keyword">外链网站或活动 ：</label></TH>
+  <TD><input type="input" class="px" id="url" value="" name="url" style="width:300px" > <a href="###" onclick="addLink('url',0)" class="ChooseImage">从功能库添加</a><a href="{weiwin::U('Wo138/index',array('token'=>$token))}" target="_blank"  class="ChooseImage" >添加实用外链</a><a href="{weiwin::U('Daohang/index',array('token'=>$token))}" target="_blank"  class="ChooseImage" >添加一键导航</a><br />
+  </TD>
+  <TD>&nbsp;</TD>
+</TR>
+<TR>
+  <TH valign="top"><label for="keyword">排序：</label></TH>
+  <TD><input type="input" class="px" id="keyword" value="1" name="sorts" style="width:500px" ><br />
+                   </TD>
+  <TD>&nbsp;</TD>
+</TR>
+<TR>
+  <TH valign="top"><label for="keyword">是否显示：</label></TH>
+  <TD><input type="radio" class="px" id="keyword" value="1" name="status" checked />是<br />
+  <input type="radio" class="px" id="keyword" value="0" name="status" />否
+                   </TD>
+  <TD>&nbsp;</TD>
+</TR>
+<TR>
+  <TH valign="top"><label for="keyword">分类页模板：</label></TH>
+  <TD>
+	<input type="text" id="selecttpl" class="px" value="已选择模板{weiwin:$info.tpid}" disabled size="40"  />
+	<a class="ChooseImage" onclick="chooseTpl('tpid','selecttpl',1)">选择模板</a>
+	<a class="ChooseImage" onclick="viewTpl()">预览</a>
+	<script>
+		function viewTpl(){
+			var tid = $('#tpid').val();
+			chooseTpl(tid,'',2);
+		}
+	</script>
+	<input type="hidden" class="px" id="tpid" value="{weiwin:$info.tpid}" name="tpid" style="width:250px">
+	
+  </TD>
+  <TD>&nbsp;
+	
+  </TD>
+</TR>
+
+
+<tr>
+  <TH valign="top"><label for="keyword">内容页模板：</label></TH>
+  <TD>
+
+	<input type="text" id="selectconttpl" class="px" value="已选择模板{weiwin:$info.conttpid}" disabled size="40"  />
+	<a class="ChooseImage" onclick="chooseTpl('conttpid','selectconttpl',3)">选择模板</a>
+	<a class="ChooseImage" onclick="viewTpl2()">预览</a>
+	<input type="hidden" class="px" value="{weiwin:$info.conttpid}" id="conttpid" name="conttpid" style="width:250px">
+	<script>
+		function viewTpl2(){
+			var tid = $('#conttpid').val();
+			chooseTpl(tid,'',4);
+		}
+	</script>
+  </TD>
+  <TD>&nbsp;
+	
+  </TD>
+</tr>
+<tr>
+	<td colspan="3" align="center">
+	
+
+	</td>
+</tr>
+<TR>
+  <TH></TH>
+  <TD><button type="submit"  name="button"  class="btn btn-success" >保存</button>
+  	<div class="clr"></div>
+  	</TD>
+  </TR>
+  </TBODY>
+</TABLE>
+  </form>
+  </div> 
+
+        </div>
+        
+        <div class="clr"></div>
+      </div>
+    </div>
+  </div> 
+
+<!--底部-->
+	<script>
+    $(document).ready(function(){
+        var resource = Resource.create();
+        var ins = Resource.instance['res_block'];
+        ins.result = ins.result || {};
+        ins.result.wuid = 34087;
+
+        
+        window.ICON();
+    });
+
+    KindEditor.ready(function(K){
+        var editor = K.editor({
+            themeType: 'simple',
+            allowFileManager: true
+        });
+        $('a.insertimage').live('click', function(e){
+            editor.loadPlugin('smimage', function(){
+                editor.plugin.imageDialog({
+                    imageUrl: $(e.target).prev().val(),
+                    clickFn: function(url, title, width, height, border, align){
+                        $(e.target).prev().val(url);
+                        if ('img' == $(e.target).prev().prev().attr('type')) {
+                            $(e.target).prev().hide();
+                            $(e.target).prev().prev().attr('src', url);
+                            $(e.target).prev().prev().show();
+                        }
+                        editor.hideDialog();
+                    }
+                });
+            });
+        });
+    });
+</script>
+<script>
+		window.document.onkeydown = function(e) {
+			if ('' == document.activeElement.id) {
+				var e=e || event;
+　 				var currKey=e.keyCode || e.which || e.charCode;
+				if (8 == currKey) {
+					return false;
+				}
+			}
+		};
+	</script>
+  	</div>
+<!--Footer-part-->
+
+<div class="row-fluid">
+  <div id="footer" class="span12"> 2014 &copy; www.138wo Admin </div>
+</div>
+
+<!--end-Footer-part-->
+
+<script src="{weiwin::RES}/138/js/excanvas.min.js"></script> 
+<script src="{weiwin::RES}/138/js/jquery.ui.custom.js"></script> 
+<script src="{weiwin::RES}/138/js/bootstrap.min.js"></script> 
+
+<script src="{weiwin::RES}/138/js/matrix.js"></script> 
+
+
+<script type="text/javascript">
+  // This function is called from the pop-up menus to transfer to
+  // a different page. Ignore if the value returned is a null string:
+  function goPage (newURL) {
+
+      // if url is empty, skip the menu dividers and reset the menu selection to default
+      if (newURL != "") {
+      
+          // if url is "-", it is this page -- reset the menu:
+          if (newURL == "-" ) {
+              resetMenu();            
+          } 
+          // else, send page to designated URL            
+          else {  
+            document.location.href = newURL;
+          }
+      }
+  }
+
+// resets the menu selection upon entry to this page:
+function resetMenu() {
+   document.gomenu.selector.selectedIndex = 2;
+}
+</script>
+</body>
+</html>
